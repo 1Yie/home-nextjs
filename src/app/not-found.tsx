@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 import style from './not-found.module.scss';
+
+export const metadata: Metadata = {
+	title: 'ichiyo | 404',
+};
 
 export default function NotFound() {
 	return (

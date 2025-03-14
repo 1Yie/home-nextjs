@@ -9,8 +9,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="zh">
 			<head>
 				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="icon" href="/logo.svg" />
+				<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<meta name="description" content="Hi there! I'm ichiyo. Welcome to my Homepage." />
+				<meta name="author" content="ichiyo" />
+				<meta name="keywords" content="ichiyo,ICHIYO,Homepage,Blog,React,JavaScript,TypeScript,Web Development,Web"></meta>
+
+				<title>ichiyo (@1Yie)</title>
 
 				<link rel="stylesheet" href="https://static.zeoseven.com/zsft/189/main/result.css" />
 				<link rel="stylesheet" href="https://fonts.font.im/css?family=Ubuntu" />
