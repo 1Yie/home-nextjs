@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ichiyo.in/sitemap.xml
