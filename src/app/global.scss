@@ -58,7 +58,7 @@ section {
 	box-sizing: border-box;
 }
 
-code {
+code:not(pre code) {
 	font-family: 'Source Code Pro', monospace;
 	padding: 3px 6px;
 	background-color: var(--code-bg-color);

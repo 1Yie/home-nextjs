@@ -115,7 +115,7 @@
 		}
 
 		pre {
-			background-color: var(--code-bg-color);
+			background-color: var(--code-pre-bg-color);
 			border-radius: 8px;
 			padding: 1rem;
 			margin: 1rem 0;
@@ -123,6 +123,14 @@
 			overflow-x: auto;
 
 			code {
+				font-family: 'Source Code Pro', monospace;
+				padding: 3px 6px;
+
+				white-space: pre-wrap;
+				word-wrap: break-word;
+
+				border-radius: 8px;
+				color: var(--code-color);
 				background: transparent !important;
 				color: inherit;
 				padding: 0 !important;
