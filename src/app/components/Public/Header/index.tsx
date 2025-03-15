@@ -5,6 +5,7 @@ import style from './header.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import { notFound } from 'next/navigation';
 
 const headerName = {
 	name: 'ichiyo',
@@ -43,8 +44,7 @@ const Header = () => {
 	const buttonRef = useRef<HTMLAnchorElement>(null);
 
 	const isActiveLink = (link: string) => {
-		if (link === '/blog') {
-			// 匹配 /blog 或 /blog/[slug]
+		if (link === '/blog' && !notFound) {
 			return pathname === '/blog' || /^\/blog\/[^/]+$/.test(pathname);
 		}
 		return pathname === link;
