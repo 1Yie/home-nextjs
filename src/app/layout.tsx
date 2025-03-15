@@ -1,8 +1,8 @@
 import './global.scss';
 import React from 'react';
 
-import Header from '@/app/components/Pubilc/Header';
-import Footer from '@/app/components/Pubilc/Footer';
+import Header from '@/app/components/Public/Header';
+import Footer from '@/app/components/Public/Footer';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
