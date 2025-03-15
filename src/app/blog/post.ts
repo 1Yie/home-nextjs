@@ -42,18 +42,26 @@ export async function getPosts(): Promise<Post[]> {
 	return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export async function getPost({ slug }: { slug: string }): Promise<Post> {
+export async function getPost({ slug }: { slug: string }): Promise<Post | null> {
 	const filePath = path.join(process.cwd(), 'src/app/blog/post', `${slug}.md`);
-	const fileContents = await fs.readFile(filePath, 'utf8');
-	const { data, content } = matter(fileContents);
 
-	const processedContent = await remark().use(remarkRehype).use(rehypeHighlight).use(rehypeStringify).process(content);
+	try {
+		const fileContents = await fs.readFile(filePath, 'utf8');
+		const { data, content } = matter(fileContents);
 
-	return {
-		title: data.title,
-		date: data.date,
-		tags: data.tags || [],
-		slug: slug,
-		content: processedContent.toString(),
-	};
+		const processedContent = await remark().use(remarkRehype).use(rehypeHighlight).use(rehypeStringify).process(content);
+
+		return {
+			title: data.title,
+			date: data.date,
+			tags: data.tags || [],
+			slug: slug,
+			content: processedContent.toString(),
+		};
+	} catch (error) {
+		if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+			return null;
+		}
+		throw error;
+	}
 }

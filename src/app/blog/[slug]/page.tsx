@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getPost } from '@/app/blog/post';
 import style from './post.module.scss';
+import { notFound } from 'next/navigation';
 
 import type { Metadata, ResolvingMetadata } from 'next';
 
@@ -22,6 +23,10 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 	const post = await getPost({ slug });
 	const previousImages = (await parent).openGraph?.images || [];
 
+	if (!post) {
+		notFound();
+	}
+
 	return {
 		title: post.title + ' | ichiyo',
 		description: `${post.title}`,
@@ -40,6 +45,10 @@ export default async function PostPage({ params }: Props) {
 	const { slug } = await params;
 	const post = await getPost({ slug });
 
+	if (!post) {
+		notFound();
+	}
+
 	return (
 		<>
 			<div className={style.postTitle}>
@@ -49,12 +58,11 @@ export default async function PostPage({ params }: Props) {
 							<Link href="/" className={style.breadcrumbHome}>
 								&nbsp;Home&nbsp;
 							</Link>
-							&gt;
+							/
 							<Link href="/blog" className={style.breadcrumbBlog}>
 								&nbsp;Blog&nbsp;
 							</Link>
-							&gt;
-							<span className={style.breadcrumbTitle}>&nbsp;{post.title}&nbsp;</span>
+							/<span className={style.breadcrumbTitle}>&nbsp;{post.title}&nbsp;</span>
 						</nav>
 						<div className={style.content}>
 							<h1>{post.title}</h1>
