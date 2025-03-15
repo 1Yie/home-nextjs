@@ -16,6 +16,7 @@
 		.rssIcon {
 			display: flex;
 			margin-right: 8px;
+			fill: var(--text-color);
 		}
 	}
 
@@ -53,6 +54,7 @@
 		}
 
 		.postMeta {
+			color: var(--text-color);
 			display: flex;
 			gap: 10px;
 			align-items: center;
@@ -64,6 +66,7 @@
 			.tags {
 				display: flex;
 				gap: 5px;
+				color: var(--text-color);
 
 				.tag {
 					padding: 0px 5px;
