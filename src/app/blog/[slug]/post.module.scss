@@ -1,0 +1,141 @@
+.postTitle {
+	border-bottom: 1px solid var(--border-color);
+
+	#postTop {
+		background-color: var(--bg-color);
+		.titlePanel {
+			background-size: 14px 14px;
+			background-image:
+				linear-gradient(to right, var(--bg-border-color) 1px, transparent 1px),
+				linear-gradient(to bottom, var(--bg-border-color) 1px, transparent 1px);
+
+			.breadcrumb {
+				padding-left: 15px;
+				padding-top: 15px;
+			}
+
+			.content {
+				padding: 40px;
+
+				h1 {
+					font-weight: 800;
+					font-size: 48px;
+				}
+
+				.tags {
+					display: flex;
+					gap: 5px;
+					padding: 8px 0;
+
+					.tag {
+						padding: 0px 5px;
+						font-size: 20px;
+						border-radius: 5px;
+						background-color: var(--code-bg-color);
+					}
+				}
+
+				.date {
+					display: flex;
+					padding: 8px 0;
+					font-size: 18px;
+				}
+			}
+		}
+	}
+}
+
+.postContent {
+	max-width: 100%;
+	overflow-x: visible;
+
+	border-bottom: 1px solid var(--border-color);
+	#postDown {
+		padding: 20px;
+
+		code:not(pre code) {
+			background-color: var(--code-bg-color);
+			color: var(--code-text-color);
+			padding: 0.2em 0.4em;
+			border-radius: 4px;
+			font-size: 0.9em;
+		}
+
+		.postStyle h1 {
+			font-size: 32px;
+			font-weight: 800;
+			margin: 12px 0;
+		}
+		.postStyle h2 {
+			font-size: 28px;
+			font-weight: 800;
+			margin: 12px 0;
+		}
+		.postStyle h3 {
+			font-size: 24px;
+			font-weight: 800;
+			margin: 12px 0;
+		}
+		.postStyle h4 {
+			font-size: 20px;
+			font-weight: 800;
+			margin: 8px 0;
+		}
+		.postStyle h5 {
+			font-size: 16px;
+			font-weight: 800;
+			margin: 8px 0;
+		}
+		.postStyle h6 {
+			font-size: 14px;
+			font-weight: 800;
+			margin: 8px 0;
+		}
+		.postStyle p {
+			font-size: 18px;
+			margin: 8px 0;
+		}
+		.postStyle ul {
+			font-size: 18px;
+		}
+		.postStyle ol {
+			font-size: 18px;
+		}
+
+		.postStyle blockquote {
+			border-left: 5px solid var(--border-color);
+			padding-left: 10px;
+			font-size: 18px;
+		}
+
+		pre {
+			background-color: var(--code-bg-color);
+			border-radius: 8px;
+			padding: 1rem;
+			margin: 1rem 0;
+			overflow-x: auto;
+
+			code {
+				background: transparent !important;
+				color: inherit;
+				padding: 0 !important;
+			}
+		}
+
+		.postStyle img {
+			max-width: 100%;
+		}
+
+		.postStyle table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		.postStyle th,
+		.postStyle td {
+			border: 1px solid var(--border-color);
+			padding: 8px;
+			text-align: left;
+		}
+	}
+}

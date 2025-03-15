@@ -17,6 +17,10 @@ const headerList = [
 		link: '/',
 	},
 	{
+		name: 'Blog',
+		link: '/blog',
+	},
+	{
 		name: 'About',
 		link: '/about',
 	},
@@ -37,6 +41,14 @@ const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLElement>(null);
 	const buttonRef = useRef<HTMLAnchorElement>(null);
+
+	const isActiveLink = (link: string) => {
+		if (link === '/blog') {
+			// 匹配 /blog 或 /blog/[slug]
+			return pathname === '/blog' || /^\/blog\/[^/]+$/.test(pathname);
+		}
+		return pathname === link;
+	};
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -74,7 +86,7 @@ const Header = () => {
 						<ul className={style.navList}>
 							{headerList.map((item, index) => (
 								<li key={index}>
-									<Link href={item.link} className={pathname === item.link ? style.active : ''} onClick={() => setIsMenuOpen(false)}>
+									<Link href={item.link} className={isActiveLink(item.link) ? style.active : ''} onClick={() => setIsMenuOpen(false)}>
 										{item.name}
 									</Link>
 								</li>

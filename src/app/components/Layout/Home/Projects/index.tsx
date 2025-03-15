@@ -28,12 +28,6 @@ const iconComponents = {
 
 const projects = [
 	{
-		name: "ichiyo's Blog",
-		description: '我的个人博客',
-		link: 'https://blog.ichiyo.in/',
-		icon: 'Blog' as const,
-	},
-	{
 		name: 'ICHIYO STATUS',
 		description: '用于检测各种服务的状态',
 		link: 'https://status.ichiyo.in/',

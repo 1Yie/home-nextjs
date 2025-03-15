@@ -1,0 +1,85 @@
+.blogContainer {
+	border-bottom: 1px solid var(--border-color);
+	background-color: var(--bg-sub-space-color);
+
+	#post {
+		background-color: var(--bg-color);
+	}
+
+	.rssLink {
+		display: flex;
+		padding: 20px;
+		gap: 5px;
+		background-color: var(--bg-sub-panel-color);
+		border-bottom: 1px solid var(--border-color);
+
+		.rssIcon {
+			display: flex;
+			margin-right: 8px;
+		}
+	}
+
+	.postsList {
+		padding: 0;
+	}
+
+	.postLink {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+		border-bottom: 1px solid var(--border-color);
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	.postCard {
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+
+		&:hover {
+			background-color: var(--bg-sub-text-color);
+		}
+	}
+
+	.postPanel {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 20px;
+
+		h2 {
+			font-size: 32px;
+		}
+
+		.postMeta {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+
+			.postDate {
+				display: flex;
+			}
+
+			.tags {
+				display: flex;
+				gap: 5px;
+
+				.tag {
+					padding: 0px 5px;
+					font-size: 15px;
+					border-radius: 5px;
+					background-color: var(--code-bg-color);
+				}
+			}
+		}
+	}
+}
+
+.space {
+	border-bottom: 1px solid var(--border-color);
+
+	#spaceContent {
+		height: 60px;
+	}
+}
