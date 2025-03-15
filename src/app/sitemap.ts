@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
+import { getPosts } from '@/app/blog/post';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const baseUrl = 'https://ichiyo.in';
 
 	return [
@@ -22,5 +23,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			changeFrequency: 'monthly',
 			priority: 0.8,
 		},
+		{
+			url: `${baseUrl}/blog`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.8,
+		},
+		...(await getPosts()).map((post) => ({
+			url: `${baseUrl}/blog/${post.slug}`,
+			lastModified: new Date(post.date),
+			changeFrequency: 'weekly' as const,
+			priority: 0.7,
+		})),
 	];
 }
