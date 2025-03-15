@@ -1,4 +1,4 @@
-import '@/app/global.scss';
+import './global.scss';
 import React from 'react';
 
 import Header from '@/app/components/Pubilc/Header';
