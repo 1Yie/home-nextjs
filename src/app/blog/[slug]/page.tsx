@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { getPost } from '@/app/blog/post';
-
 import style from './post.module.scss';
+
+import type { Metadata, ResolvingMetadata } from 'next';
 
 const formatDate = (dateString: string) => {
 	const date = new Date(dateString);
@@ -11,8 +12,32 @@ const formatDate = (dateString: string) => {
 	return `${year} 年 ${month} 月 ${day} 日`;
 };
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-	const { slug } = params;
+type Props = {
+	params: Promise<{ slug: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+	const { slug } = await params;
+	const post = await getPost({ slug });
+	const previousImages = (await parent).openGraph?.images || [];
+
+	return {
+		title: post.title,
+		description: `文章《${post.title}》的详细内容`,
+		openGraph: {
+			title: post.title,
+			description: `文章《${post.title}》的详细内容`,
+			images: [...previousImages],
+			type: 'article',
+			publishedTime: post.date,
+			tags: post.tags,
+		},
+	};
+}
+
+export default async function PostPage({ params }: Props) {
+	const { slug } = await params;
 	const post = await getPost({ slug });
 
 	return (
