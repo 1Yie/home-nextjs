@@ -63,7 +63,7 @@ export default function Footer() {
 
 							return (
 								<a key={index} href={link.link} target="_blank" rel="noopener noreferrer">
-									<Icon size={24} color="#000000c1">
+									<Icon size={24}>
 										<IconComponent aria-label={link.name} />
 									</Icon>
 								</a>

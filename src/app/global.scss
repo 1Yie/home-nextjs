@@ -1,10 +1,7 @@
 @use './color.scss' as *;
-@import 'highlight.js/styles/github.css';
 
-// @import url('https://static.zeoseven.com/zsft/189/main/result.css');
-// @import url('https://fonts.font.im/css?family=Ubuntu');
-// @import url('https://fonts.font.im/css?family=Source+Code+Pro:500');
-// @import url('https://static.zeoseven.com/zsft/309/main/result.css');
+@import url('highlight.js/styles/github.css') screen and (prefers-color-scheme: light);
+@import url('highlight.js/styles/github-dark.css') screen and (prefers-color-scheme: dark);
 
 html {
 	padding: 0;

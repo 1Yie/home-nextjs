@@ -10,8 +10,8 @@
 				linear-gradient(to bottom, var(--bg-border-color) 1px, transparent 1px);
 
 			.breadcrumb {
-				padding-left: 15px;
-				padding-top: 15px;
+				color: var(--text-color);
+				padding: 15px;
 			}
 
 			.content {
@@ -32,6 +32,7 @@
 						font-size: 20px;
 						border-radius: 5px;
 						background-color: var(--code-bg-color);
+						color: var(--code-color);
 					}
 				}
 
@@ -39,6 +40,7 @@
 					display: flex;
 					padding: 8px 0;
 					font-size: 18px;
+					color: var(--text-color);
 				}
 			}
 		}
@@ -55,7 +57,7 @@
 
 		code:not(pre code) {
 			background-color: var(--code-bg-color);
-			color: var(--code-text-color);
+			color: var(--code-color);
 			padding: 0.2em 0.4em;
 			border-radius: 4px;
 			font-size: 0.9em;
@@ -102,6 +104,10 @@
 			font-size: 18px;
 		}
 
+		.postStyle #text {
+			color: var(--code-color);
+		}
+
 		.postStyle blockquote {
 			border-left: 5px solid var(--border-color);
 			padding-left: 10px;
@@ -113,6 +119,7 @@
 			border-radius: 8px;
 			padding: 1rem;
 			margin: 1rem 0;
+			color: var(--code-color) !important;
 			overflow-x: auto;
 
 			code {

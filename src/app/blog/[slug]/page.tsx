@@ -23,11 +23,11 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 	const previousImages = (await parent).openGraph?.images || [];
 
 	return {
-		title: post.title,
-		description: `文章《${post.title}》的详细内容`,
+		title: post.title + ' | ichiyo',
+		description: `${post.title}`,
 		openGraph: {
-			title: post.title,
-			description: `文章《${post.title}》的详细内容`,
+			title: post.title + ' | ichiyo',
+			description: `${post.title}`,
 			images: [...previousImages],
 			type: 'article',
 			publishedTime: post.date,
