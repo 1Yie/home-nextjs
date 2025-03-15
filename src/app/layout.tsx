@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="stylesheet" href="https://fonts.font.im/css?family=Ubuntu" />
 				<link rel="stylesheet" href="https://fonts.font.im/css?family=Source+Code+Pro:500" />
 				<link rel="stylesheet" href="https://static.zeoseven.com/zsft/309/main/result.css" />
+				<link rel="stylesheet" href="https://fonts.font.im/css?family=Raleway:400,200,300,100,500,600,700,800,900" />
 			</head>
 			<body>
 				<Header />
