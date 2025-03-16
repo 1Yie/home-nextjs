@@ -20,6 +20,10 @@
 	--code-bg-color: #d1d1d16f;
 	--code-pre-bg-color: #f6f8fa;
 
+	/* blockquote 颜色 */
+	--blockquote-color: #f3f3f3;
+	--blockquote-to-color: #f6f6f6;
+
 	/* 链接颜色 */
 	--link-color: rgb(56, 56, 56);
 	--link-hover-color: black;
@@ -72,6 +76,10 @@
 		--code-color: #bebebe;
 		--code-bg-color: #3b3b3bb1;
 		--code-pre-bg-color: #151b23;
+
+		/* blockquote 颜色 */
+		--blockquote-color: #2d2d2d;
+		--blockquote-to-color: #323232;
 
 		/* 链接颜色 */
 		--link-color: var(--text-color);
