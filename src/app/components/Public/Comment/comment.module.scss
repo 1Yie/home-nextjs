@@ -1,7 +1,14 @@
 .commentPanel {
 	border-bottom: 1px solid var(--border-color);
-}
 
+	// 第一个样式穿透
+	:global(.atk-main-editor) {
+		border-radius: 0;
+		:global(.atk-send-btn) {
+			border-radius: 0;
+		}
+	}
+}
 .comment {
 	padding: 50px 120px;
 }

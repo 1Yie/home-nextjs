@@ -62,12 +62,11 @@ section {
 
 code:not(pre code) {
 	font-family: 'Source Code Pro', monospace;
-	padding: 3px 6px;
+	padding: 2px 6px;
 	background-color: var(--code-bg-color);
 	white-space: pre-wrap;
 	word-wrap: break-word;
 
-	border-radius: 8px;
 	color: var(--code-color);
 }
 

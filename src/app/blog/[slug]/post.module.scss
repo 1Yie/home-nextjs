@@ -66,15 +66,6 @@
 	border-bottom: 1px solid var(--border-color);
 	#postDown {
 		padding: 20px 120px;
-
-		code:not(pre code) {
-			background-color: var(--code-bg-color);
-			color: var(--code-color);
-			padding: 0.2em 0.4em;
-			border-radius: 4px;
-			font-size: 0.9em;
-		}
-
 		.postStyle h1 {
 			font-size: 32px;
 			font-weight: 800;
@@ -126,41 +117,12 @@
 			font-size: 18px;
 		}
 
-		pre {
-			background-color: var(--code-pre-bg-color);
-			border-radius: 8px;
-			padding: 1rem;
-			margin: 1rem 0;
-			color: var(--code-color) !important;
-			overflow-x: auto;
-
-			white-space: pre;
-			word-wrap: normal;
-
-			code {
-				font-family: 'Source Code Pro', monospace;
-				padding: 3px 6px;
-
-				border-radius: 8px;
-				color: var(--code-color);
-				background: transparent !important;
-				color: inherit;
-				padding: 0 !important;
-			}
-
-			code {
-				&::-webkit-scrollbar {
-					width: 8px;
-					height: 8px;
-				}
-				&::-webkit-scrollbar-track {
-					background: var(--code-pre-bg-color);
-				}
-				&::-webkit-scrollbar-thumb {
-					background: var(--border-color);
-					border-radius: 4px;
-				}
-			}
+		pre code {
+			font-family: 'Source Code Pro', monospace;
+			padding: 20px;
+			background: var(--code-pre-bg-color);
+			color: var(--code-color);
+			color: inherit;
 		}
 
 		.postStyle img {
