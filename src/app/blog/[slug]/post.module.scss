@@ -12,6 +12,7 @@
 
 			.breadcrumb {
 				position: absolute;
+				z-index: 1;
 				color: var(--text-color);
 				padding: 15px;
 			}
