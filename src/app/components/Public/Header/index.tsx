@@ -36,7 +36,7 @@ const Header = () => {
 			try {
 				const response = await fetch('/api/posts');
 				const data = await response.json();
-				setSlugs(data);
+				setSlugs(data.map((post: { slug: string }) => post.slug));
 			} catch (error) {
 				console.error('Error fetching posts slugs:', error);
 			}

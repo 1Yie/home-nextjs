@@ -1,0 +1,13 @@
+.commentPanel {
+	border-bottom: 1px solid var(--border-color);
+}
+
+.comment {
+	padding: 50px 120px;
+}
+
+@media screen and (max-width: 768px) {
+	.comment {
+		padding: 20px 50px;
+	}
+}

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getPost } from '@/app/blog/post';
 import style from './post.module.scss';
 import { notFound } from 'next/navigation';
+import Comments from '@/app/components/Public/Comment';
 
 import type { Metadata, ResolvingMetadata } from 'next';
 
@@ -78,6 +79,9 @@ export default async function PostPage({ params }: Props) {
 					</div>
 				</section>
 			</div>
+			<div className={style.space}>
+				<section id={style.spaceContent}></section>
+			</div>
 			<div className={style.postContent}>
 				<section id={style.postDown}>
 					<article>
@@ -85,6 +89,8 @@ export default async function PostPage({ params }: Props) {
 					</article>
 				</section>
 			</div>
+
+			<Comments />
 		</>
 	);
 }
