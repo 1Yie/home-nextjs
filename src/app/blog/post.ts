@@ -40,6 +40,7 @@ const validatePostMetadata = (data: Record<string, unknown>): data is PostMetada
 	if (!data.date || isNaN(Date.parse(data.date as string))) {
 		throw new Error('Missing or invalid date in post metadata');
 	}
+
 	return true;
 };
 

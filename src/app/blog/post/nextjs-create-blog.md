@@ -9,33 +9,73 @@ tags:
 
 # 思路
 
-（测试文章样式）
+面对博客搭建，以往可能会选择数据库 + 后台管理的方式，但个人搭建博客其实用不上这么复杂。
 
-其实面对个人博客，使用 MD + Next.js 解析成页面展示，不需要数据库，也不需要复杂的后台管理系统。
+我选择通过 Markdown 来写博客，通过工具渲染成 HTML 展示出来。
 
 # 技术栈
 
+- React
 - Next.js
 - Markdown
 - gray-matter
+- remark
 
-通过 `gray-matter` 将 Markdown 解析成 HTML，然后在 Next.js 中渲染。
+# 思考
 
-后续如果更新博客，只需要在 post 目录下新建 md 文件，再 pull 到服务器即可。
+## 如何通过 Markdown 获取到文章的元数据？
 
-# 代码
+Markdown 本身是没有元数据的概念的，所以我们需要通过工具来获取到文章的元数据。
+我选择了 `gray-matter` ，它可以将 Markdown 的元数据解析成 JSON 对象。
 
-解析 Markdown 的代码如下：
+拿到 Markdown 的元数据后，我们就可以将元数据渲染到页面上了。
+
+## 如何渲染？
+
+经过了解，我发现可以通过 `remark` 来渲染 Markdown。
+
+`remark` 是一个基于 React 的库，它提供了一个 React 钩子和组件，能够将 Markdown 轻松转换 为 React 元素。
+
+`remark` 拥有插件系统，我们可以通过插件来扩展 `remark` 的功能。
+
+使用 `remark-rehype` 插件将 mdast 转换成 HTML 抽象语法树（hast）。
+
+当然，`remark` 还提供了一些其他的插件，比如 `remark-highlight.js` 插件，可以将代码块高亮，`remark-gfm` 插件可以支持 GitHub Flavored Markdown， `rehype-stringify` 插件可以将 hast 转换成 HTML 字符串。
+
+# 实现
+
+## 解析 Markdown 的元数据
+
+首先，假设我们在 `src/app/blog/post` 目录下有一个 `test.md` 文件，内容如下：
+
+```markdown
+---
+title: '测试文章标题'
+date: '2025-3-15'
+tags:
+  - test
+---
+
+这是一篇测试文章。
+```
+
+我们要先获取这个目录下的所有 md 文件。
 
 ```ts
-import { promises as fs } from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { remark } from 'remark';
-import remarkRehype from 'remark-rehype';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeStringify from 'rehype-stringify';
+const POSTS_DIR = path.join(process.cwd(), 'src/app/blog/post');
+const MD_EXTENSION = '.md';
+```
 
+通过 `fs.readdir` 方法获取到这个目录下的所有文件。
+
+```ts
+const files = await fs.readdir(POSTS_DIR);
+const markdownFiles = files.filter((file) => file.endsWith(MD_EXTENSION));
+```
+
+然后，我们可以通过 `gray-matter` 来解析 Markdown 的元数据。
+
+```ts
 type PostMetadata = {
 	title: string;
 	date: string;
@@ -43,113 +83,86 @@ type PostMetadata = {
 	slug: string;
 };
 
-type Post = PostMetadata & {
-	content: string;
-};
+const posts = await Promise.all(
+	markdownFiles.map(async (file) => {
+		const filePath = path.join(POSTS_DIR, file);
+		const fileContents = await fs.readFile(filePath, 'utf8');
+		const { data } = matter(fileContents);
+		return {
+			title: data.title,
+			date: data.date,
+			tags: data.tags || [],
+			slug: file.replace(/\.md$/, ''),
+		} as PostMetadata;
+	})
+);
+```
 
-export async function getPosts(): Promise<Post[]> {
-	const postsDir = path.join(process.cwd(), 'src/app/blog/post');
-	const files = await fs.readdir(postsDir);
+```ts
+// 排序
+posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+```
 
-	const posts = await Promise.all(
-		files.map(async (file) => {
-			const filePath = path.join(postsDir, file);
-			const fileContents = await fs.readFile(filePath, 'utf8');
-			const { data, content } = matter(fileContents);
+通过获取的 slug 可以获取到文章的内容。
 
-			const processedContent = await remark().use(remarkRehype).use(rehypeHighlight).use(rehypeStringify).process(content);
+```ts
+export async function getPost({ slug }: { slug: string }): Promise<Post | null> {
+	const filePath = path.join(POSTS_DIR, `${slug}${MD_EXTENSION}`);
 
-			return {
-				title: data.title,
-				date: data.date,
-				tags: data.tags || [],
-				slug: file.replace(/\.md$/, ''),
-				content: processedContent.toString(),
-			} as Post;
-		})
-	);
+	try {
+		const fileContents = await fs.readFile(filePath, 'utf8');
+		const { data, content } = matter(fileContents);
 
-	return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+		validatePostMetadata(data);
+
+		return {
+			title: data.title,
+			date: new Date(data.date).toISOString(),
+			tags: data.tags || [],
+			slug,
+			content: await processMarkdown(content),
+		};
+	} catch (error) {
+		if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+			return null;
+		}
+		console.error(`Error loading post ${slug}:`, error);
+		throw new Error(`Failed to load post: ${slug}`);
+	}
 }
+```
 
-export async function getPost({ slug }: { slug: string }): Promise<Post> {
-	const filePath = path.join(process.cwd(), 'src/app/blog/post', `${slug}.md`);
-	const fileContents = await fs.readFile(filePath, 'utf8');
-	const { data, content } = matter(fileContents);
+## 渲染内容
 
-	const processedContent = await remark().use(remarkRehype).use(rehypeHighlight).use(rehypeStringify).process(content);
+- 根据 slug 参数获取文章内容
+- 生成 SEO 元数据
+- 渲染文章详情页
+
+```ts
+// SEO元数据生成
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	// 获取文章数据
+	const post = await getPost({ slug });
 
 	return {
-		title: data.title,
-		date: data.date,
-		tags: data.tags || [],
-		slug: slug,
-		content: processedContent.toString(),
+		title: post.title + ' | ichiyo', // 动态标题
+		openGraph: {
+			type: 'article',
+			publishedTime: post.date, // 结构化数据
+			tags: post.tags, // 文章标签
+		},
 	};
 }
 ```
 
-# 图片
+> Next.js 15 之后，元数据生成 (generateMetadata) 必须是 Promise，否则在 build 时 会抛出 Type 'Props' does not satisfy the constraint 'PageProps'
 
-![text](https://picr.zz.ac/UPi757yejvKTNG8-1kY1hy9qyClWLzeZN-ARgrA06l8=)
+文章内容渲染
 
-# 引用
+```tsx
+<div dangerouslySetInnerHTML={{ __html: post.content }} />
+```
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> lorem ipsum dolor sit amet
+数据处理流程：
 
-# 分割
-
----
-
-# 链接
-
-# 这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
-
-## 这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
-
-### 这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
-
-#### 这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
-
-这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
-
-# 表格
-
-| 1   | 2   | 3    | 4   | 5   |
-| --- | --- | ---- | --- | --- |
-| 1   | 3   | 4132 |     |     |
-| 1   | 2   |      | 3   | 2   |
-| 1   | 1   | 1231 | 2   | 2   |
-
-# 列表
-
-- 第一项
-- 第二项
-- 第三项
-
-1. 第一项
-2. 第二项
-3. 第一项：
-   - 第一项嵌套的第一个元素
-   - 第一项嵌套的第二个元素
-4. 第二项：
-   - 第二项嵌套的第一个元素
-   - 第二项嵌套的第二个元素
-
-# 段落
-
-# # 标题
-
-## ## 标题
-
-### ### 标题
-
-#### #### 标题
-
-##### ##### 标题
-
-###### ###### 标题
-
-普通段落
+`浏览器请求 → Next.js路由匹配 → getPost获取数据 → 生成元数据 → 渲染页面组件`
