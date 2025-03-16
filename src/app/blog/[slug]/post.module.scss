@@ -121,8 +121,7 @@
 			font-family: 'Source Code Pro', monospace;
 			padding: 20px;
 			background: var(--code-pre-bg-color);
-			color: var(--code-color);
-			color: inherit;
+			color: var(--code-color) !important;
 		}
 
 		.postStyle img {
