@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import remarkRehype from 'remark-rehype';
+import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 
@@ -17,51 +18,82 @@ type Post = PostMetadata & {
 	content: string;
 };
 
+const POSTS_DIR = path.join(process.cwd(), 'src/app/blog/post');
+const MD_EXTENSION = '.md';
+
+const processMarkdown = async (content: string): Promise<string> => {
+	try {
+		const processor = remark().use(remarkGfm).use(remarkRehype).use(rehypeHighlight).use(rehypeStringify);
+
+		const processed = await processor.process(content);
+		return processed.toString();
+	} catch (error) {
+		console.error('Markdown processing failed:', error);
+		throw new Error('Failed to process Markdown content');
+	}
+};
+
+const validatePostMetadata = (data: Record<string, unknown>): data is PostMetadata => {
+	if (!data.title || typeof data.title !== 'string') {
+		throw new Error('Missing or invalid title in post metadata');
+	}
+	if (!data.date || isNaN(Date.parse(data.date as string))) {
+		throw new Error('Missing or invalid date in post metadata');
+	}
+	return true;
+};
+
 export async function getPosts(): Promise<Post[]> {
-	const postsDir = path.join(process.cwd(), 'src/app/blog/post');
-	const files = await fs.readdir(postsDir);
+	try {
+		const files = await fs.readdir(POSTS_DIR);
+		const markdownFiles = files.filter((file) => file.endsWith(MD_EXTENSION));
 
-	const posts = await Promise.all(
-		files.map(async (file) => {
-			const filePath = path.join(postsDir, file);
-			const fileContents = await fs.readFile(filePath, 'utf8');
-			const { data, content } = matter(fileContents);
+		const posts = await Promise.all(
+			markdownFiles.map(async (file) => {
+				const filePath = path.join(POSTS_DIR, file);
+				const fileContents = await fs.readFile(filePath, 'utf8');
+				const { data, content } = matter(fileContents);
 
-			const processedContent = await remark().use(remarkRehype).use(rehypeHighlight).use(rehypeStringify).process(content);
+				validatePostMetadata(data);
 
-			return {
-				title: data.title,
-				date: data.date,
-				tags: data.tags || [],
-				slug: file.replace(/\.md$/, ''),
-				content: processedContent.toString(),
-			} as Post;
-		})
-	);
+				return {
+					title: data.title,
+					date: new Date(data.date).toISOString(),
+					tags: data.tags || [],
+					slug: file.replace(MD_EXTENSION, ''),
+					content: await processMarkdown(content),
+				};
+			})
+		);
 
-	return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+		return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+	} catch (error) {
+		console.error('Failed to get posts:', error);
+		throw new Error('Failed to fetch blog posts');
+	}
 }
 
 export async function getPost({ slug }: { slug: string }): Promise<Post | null> {
-	const filePath = path.join(process.cwd(), 'src/app/blog/post', `${slug}.md`);
+	const filePath = path.join(POSTS_DIR, `${slug}${MD_EXTENSION}`);
 
 	try {
 		const fileContents = await fs.readFile(filePath, 'utf8');
 		const { data, content } = matter(fileContents);
 
-		const processedContent = await remark().use(remarkRehype).use(rehypeHighlight).use(rehypeStringify).process(content);
+		validatePostMetadata(data);
 
 		return {
 			title: data.title,
-			date: data.date,
+			date: new Date(data.date).toISOString(),
 			tags: data.tags || [],
-			slug: slug,
-			content: processedContent.toString(),
+			slug,
+			content: await processMarkdown(content),
 		};
 	} catch (error) {
 		if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
 			return null;
 		}
-		throw error;
+		console.error(`Error loading post ${slug}:`, error);
+		throw new Error(`Failed to load post: ${slug}`);
 	}
 }

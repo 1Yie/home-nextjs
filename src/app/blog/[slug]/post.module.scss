@@ -54,7 +54,7 @@
 
 .space {
 	border-bottom: 1px solid var(--border-color);
-
+	background-color: var(--bg-sub-space-color);
 	#spaceContent {
 		height: 60px;
 	}
@@ -113,9 +113,21 @@
 		}
 
 		.postStyle blockquote {
+			background: linear-gradient(to top, #f3f3f3, #f6f6f6);
 			border-left: 5px solid var(--border-color);
 			padding-left: 10px;
+			padding: 0.25rem 0 0.25rem 1rem;
 			font-size: 18px;
+
+			p {
+				color: var(--code-color);
+			}
+		}
+
+		.postStyle hr {
+			margin: 40px 0;
+			border: none;
+			border-top: 2px solid var(--border-color);
 		}
 
 		pre code {
@@ -127,6 +139,9 @@
 
 		.postStyle img {
 			max-width: 100%;
+			height: auto;
+			display: block;
+			margin: 0 auto;
 		}
 
 		.postStyle table {
@@ -139,6 +154,10 @@
 			border: 1px solid var(--border-color);
 			padding: 8px;
 			text-align: left;
+		}
+
+		.postStyle th {
+			background-color: var(--code-pre-bg-color);
 		}
 	}
 }

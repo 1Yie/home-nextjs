@@ -89,7 +89,9 @@ export default async function PostPage({ params }: Props) {
 					</article>
 				</section>
 			</div>
-
+			<div className={style.space}>
+				<section id={style.spaceContent}></section>
+			</div>
 			<Comments />
 		</>
 	);

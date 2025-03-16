@@ -88,3 +88,68 @@ export async function getPost({ slug }: { slug: string }): Promise<Post> {
 	};
 }
 ```
+
+# 图片
+
+![text](https://picr.zz.ac/UPi757yejvKTNG8-1kY1hy9qyClWLzeZN-ARgrA06l8=)
+
+# 引用
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> lorem ipsum dolor sit amet
+
+# 分割
+
+---
+
+# 链接
+
+# 这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
+
+## 这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
+
+### 这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
+
+#### 这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
+
+这是一个链接 [ichiyo(@1Yie)](https://ichiyo.in)。
+
+# 表格
+
+| 1   | 2   | 3    | 4   | 5   |
+| --- | --- | ---- | --- | --- |
+| 1   | 3   | 4132 |     |     |
+| 1   | 2   |      | 3   | 2   |
+| 1   | 1   | 1231 | 2   | 2   |
+
+# 列表
+
+- 第一项
+- 第二项
+- 第三项
+
+1. 第一项
+2. 第二项
+3. 第一项：
+   - 第一项嵌套的第一个元素
+   - 第一项嵌套的第二个元素
+4. 第二项：
+   - 第二项嵌套的第一个元素
+   - 第二项嵌套的第二个元素
+
+# 段落
+
+# # 标题
+
+## ## 标题
+
+### ### 标题
+
+#### #### 标题
+
+##### ##### 标题
+
+###### ###### 标题
+
+普通段落
