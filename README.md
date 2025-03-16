@@ -6,6 +6,12 @@
 
 demo：[ichiyo(@1Yie)](https://ichiyo.in)
 
+## 博客
+
+博客使用 Markdown 编写，通过在 `src/app/blog/post` 目录下获取 md 文件，通过 `gray-matter` 解析成 HTML，然后在 Next.js 中渲染。
+
+> 每次更新博客请 `npm run build` 后再部署
+
 ## 部署
 
 ```bash
