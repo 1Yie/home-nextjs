@@ -85,8 +85,8 @@ a {
 
 ::-webkit-scrollbar,
 scrollbar {
-	width: 10px;
-	height: 6px;
+	max-width: 10px;
+	max-height: 6px;
 	background-color: var(--scrollbar-bg-color);
 }
 
