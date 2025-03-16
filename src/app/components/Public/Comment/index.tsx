@@ -13,7 +13,7 @@ export default function Comments() {
 			el: containerRef.current,
 			pageKey: window.location.pathname,
 			pageTitle: document.title,
-			server: process.env.NEXT_PUBLIC_ARTALK_SERVER,
+			server: 'https://artalk.ichiyo.in/',
 			site: 'blog-artalk',
 			darkMode: 'auto',
 			flatMode: 'auto',
