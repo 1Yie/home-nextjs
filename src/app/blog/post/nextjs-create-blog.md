@@ -25,7 +25,7 @@ tags:
 
 ## 如何通过 Markdown 获取到文章的元数据？
 
-Markdown 本身是没有元数据的概念的，所以我们需要通过工具来获取到文章的元数据。
+Markdown 可以在 head 定义元数据，然后通过工具来获取到文章的元数据。
 我选择了 `gray-matter` ，它可以将 Markdown 的元数据解析成 JSON 对象。
 
 拿到 Markdown 的元数据后，我们就可以将元数据渲染到页面上了。
@@ -48,7 +48,7 @@ Markdown 本身是没有元数据的概念的，所以我们需要通过工具�
 
 首先，假设我们在 `src/app/blog/post` 目录下有一个 `test.md` 文件，内容如下：
 
-```markdown
+```md
 ---
 title: '测试文章标题'
 date: '2025-3-15'
@@ -165,4 +165,4 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 数据处理流程：
 
-`浏览器请求 → Next.js路由匹配 → getPost获取数据 → 生成元数据 → 渲染页面组件`
+`浏览器请求 → Next.js 路由匹配 → getPost 获取数据 → 生成元数据 → 渲染页面组件`
