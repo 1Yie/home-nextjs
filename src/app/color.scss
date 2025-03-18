@@ -5,6 +5,7 @@
 
 	/* 背景色 */
 	--bg-color: #fff;
+	--bg-color-reverse: rgb(21, 21, 21);
 	--bg-sub-space-color: rgba(248, 248, 248, 0.436);
 
 	--bg-sub-text-color: #f8f8f86f;
@@ -12,6 +13,7 @@
 
 	/* 字体颜色 */
 	--text-color: black;
+	--text-color-reverse: white;
 	--logo-text-color: var(--text-color);
 	--text-sub-color: gray;
 
@@ -62,6 +64,7 @@
 
 		/* 背景色 */
 		--bg-color: rgb(21, 21, 21);
+		--bg-color-reverse: #e1e1e1;
 		--bg-sub-space-color: rgba(64, 64, 64, 0.436);
 
 		--bg-sub-text-color: #39393942;
@@ -69,6 +72,7 @@
 
 		/* 字体颜色 */
 		--text-color: rgba(255, 255, 255, 0.696);
+		--text-color-reverse: black;
 		--logo-text-color: var(--text-color);
 		--text-sub-color: rgba(161, 161, 161, 0.884);
 

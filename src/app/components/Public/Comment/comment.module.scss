@@ -1,16 +1,25 @@
 .commentPanel {
 	border-bottom: 1px solid var(--border-color);
+}
 
-	// 第一个样式穿透
+.comment {
+	padding: 50px 120px;
+
 	:global(.atk-main-editor) {
+		--at-color-main: var(--bg-color-reverse);
 		border-radius: 0;
 		:global(.atk-send-btn) {
+			color: var(--text-color-reverse);
 			border-radius: 0;
 		}
 	}
-}
-.comment {
-	padding: 50px 120px;
+
+	:global(.atk-list) {
+		--at-color-main: var(--text-color);
+		:global(.atk-copyright) {
+			padding-right: 0 !important;
+		}
+	}
 }
 
 @media screen and (max-width: 768px) {

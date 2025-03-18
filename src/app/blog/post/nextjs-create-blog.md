@@ -1,10 +1,12 @@
 ---
-title: 'Next.js + gray-matter + Markdown 搭建个人博客'
+title: 'Next.js 实现个人博客'
 date: '2025-3-15'
 tags:
   - Blog
   - Next.js
   - Markdown
+  - remark
+  - gray-matter
 ---
 
 # 思路
