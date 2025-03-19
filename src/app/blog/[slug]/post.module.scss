@@ -163,6 +163,21 @@
 		.postStyle th {
 			background-color: var(--code-bg-color);
 		}
+
+		:global(.footnotes) {
+			border-top: 1px solid var(--border-color);
+			border-left: none;
+			border-right: none;
+
+			padding: 15px 0;
+			h2 {
+				display: none;
+			}
+
+			p {
+				font-size: 16px;
+			}
+		}
 	}
 }
 
