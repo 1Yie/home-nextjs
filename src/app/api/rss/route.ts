@@ -16,10 +16,13 @@ export async function GET() {
 	posts.forEach((post) => {
 		const plainTextContent = post.content.replace(/<[^>]*>?/gm, '');
 
+		const date = new Date(post.date);
+		const chinaTime = new Date(date.getTime() + 8 * 60 * 60 * 1000); // UTC+8
+
 		feed.item({
 			title: post.title,
 			url: BASE_URL + `/blog/${post.slug}`,
-			date: new Date(post.date),
+			date: chinaTime,
 			description: plainTextContent.substring(0, 200) + '...',
 		});
 	});
