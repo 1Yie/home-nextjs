@@ -10,7 +10,12 @@ demo：[ichiyo(@1Yie)](https://ichiyo.in)
 
 博客使用 Markdown 编写，通过在 `src/app/blog/post` 目录下获取 md 文件，通过 `gray-matter` 解析成 HTML，然后在 Next.js 中渲染。
 
-> 每次更新博客请 `npm run build` 后再部署
+> 添加博客在 `src/app/blog/post` 添加 md 文件即可。
+
+> - `slug`：文章 slug，为 md 文件名，只能包含字母、数字、下划线，不能包含空格
+> - `title`：文章标题
+> - `date`：文章发布日期
+> - `tags`：文章标签
 
 ## 部署
 
