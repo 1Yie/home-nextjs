@@ -1,16 +1,26 @@
-import { getPosts } from '@/app/blog/post';
 import style from './list.module.scss';
+import type { PostMetadata } from '@/app/blog/post';
 
 const formatDate = (dateString: string) => {
 	const date = new Date(dateString);
-	const year = date.getFullYear();
-	const month = String(date.getMonth() + 1).padStart(2, '0');
-	const day = String(date.getDate()).padStart(2, '0');
-	return `${year} 年 ${month} 月 ${day} 日`;
+	return `${date.getFullYear()} 年 ${String(date.getMonth() + 1).padStart(2, '0')} 月 ${String(date.getDate()).padStart(2, '0')} 日`;
 };
 
-export default async function BlogPage() {
-	const posts = await getPosts();
+export async function getServerSideProps() {
+	try {
+		const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:3000';
+		const response = await fetch(`${API_BASE}/api/posts`);
+		if (!response.ok) throw new Error('Failed to fetch');
+		const posts = await response.json();
+
+		return { props: { posts } };
+	} catch (error) {
+		console.error('Error fetching posts:', error);
+		return { props: { posts: [] } };
+	}
+}
+
+export default function BlogPage({ posts }: { posts: PostMetadata[] }) {
 	const sortedPosts = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 	return (
@@ -34,7 +44,7 @@ export default async function BlogPage() {
 										<div className={style.postMeta}>
 											<time className={style.postDate}>{formatDate(post.date)}</time>
 											<div className={style.tags}>
-												{post.tags?.map((tag) => (
+												{post.tags?.map((tag: string) => (
 													<span key={tag} className={style.tag}>
 														{tag}
 													</span>

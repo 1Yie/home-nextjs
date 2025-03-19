@@ -7,7 +7,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 
-type PostMetadata = {
+export type PostMetadata = {
 	title: string;
 	date: string;
 	tags?: string[];
