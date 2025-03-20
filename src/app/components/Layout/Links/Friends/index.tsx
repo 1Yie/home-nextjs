@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import style from './friends.module.scss';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -21,57 +22,34 @@ const socialIcons = {
 	Twitter: Twitter,
 };
 
-const friendsList = [
-	{
-		name: 'Example',
-		image: 'https://iph.href.lu/150x150?fg=666666&bg=cccccc',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		social: [
-			{
-				name: 'GitHub',
-				link: 'https://github.com/example',
-			},
-			{
-				name: 'Twitter',
-				link: 'https://x.com/example',
-			},
-		],
-	},
+interface Social {
+	name: string;
+	link: string;
+}
 
-	{
-		name: 'Example',
-		image: 'https://iph.href.lu/150x150?fg=666666&bg=cccccc',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		social: [
-			{
-				name: 'GitHub',
-				link: 'https://github.com/example',
-			},
-			{
-				name: 'Twitter',
-				link: 'https://x.com/example',
-			},
-		],
-	},
-
-	{
-		name: 'Example',
-		image: 'https://iph.href.lu/150x150?fg=666666&bg=cccccc',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		social: [
-			{
-				name: 'GitHub',
-				link: 'https://github.com/example',
-			},
-			{
-				name: 'Twitter',
-				link: 'https://x.com/example',
-			},
-		],
-	},
-];
+interface Friend {
+	name: string;
+	image: string;
+	description: string;
+	social: Social[];
+}
 
 export default function Friends() {
+	const [friendsList, setFriendsList] = useState<Friend[]>([]);
+
+	useEffect(() => {
+		const fetchFriends = async () => {
+			try {
+				const res = await fetch('/data/friends.json');
+				const data: Friend[] = await res.json();
+				setFriendsList(data);
+			} catch (error) {
+				console.error('Failed to load friends list:', error);
+			}
+		};
+		fetchFriends();
+	}, []);
+
 	return (
 		<div className={style.friendContainer}>
 			<section id={style.friends}>
