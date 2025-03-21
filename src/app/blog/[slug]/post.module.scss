@@ -164,6 +164,58 @@
 			background-color: var(--code-bg-color);
 		}
 
+		:global(.markdown-alert) {
+			padding: 10px;
+			margin: 10px 0;
+
+			:global(p) {
+				margin: 0;
+			}
+
+			:global(.markdown-alert-title) {
+				display: flex;
+				align-items: center;
+				font-weight: bold;
+				margin-top: 0;
+				gap: 6px;
+				:global(svg) {
+					width: 20px;
+					height: 20px;
+					image-rendering: pixelated;
+				}
+			}
+		}
+
+		:global(.markdown-alert-warning) {
+			background-color: #fff3cd;
+			border-color: #ffeeba;
+			color: #856404;
+		}
+
+		:global(.markdown-alert-note) {
+			background-color: #d1ecf1;
+			border-color: #bee5eb;
+			color: #0c5460;
+		}
+
+		:global(.markdown-alert-tip) {
+			background-color: #d4edda;
+			border-color: #c3e6cb;
+			color: #155724;
+		}
+
+		:global(.markdown-alert-important) {
+			background-color: #f8d7da;
+			border-color: #f5c6cb;
+			color: #721c24;
+		}
+
+		:global(.markdown-alert-caution) {
+			background-color: #eda3a9;
+			border-color: #f6b1b8;
+			color: #721c24;
+		}
+
 		:global(.footnotes) {
 			border-top: 1px solid var(--border-color);
 			border-left: none;

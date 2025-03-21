@@ -1,11 +1,14 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
+
+import remarkAdmonitions from 'remark-alerts';
 
 export type PostMetadata = {
 	title: string;
@@ -23,13 +26,23 @@ const MD_EXTENSION = '.md';
 
 const processMarkdown = async (content: string): Promise<string> => {
 	try {
-		const processor = remark().use(remarkGfm).use(remarkRehype).use(rehypeHighlight).use(rehypeStringify);
+		const processor = unified()
+			.use(remarkParse)
+			.use(remarkGfm)
+			.use(remarkAdmonitions)
+			.use(remarkRehype, {
+				allowDangerousHtml: true,
+			})
+			.use(rehypeHighlight)
+			.use(rehypeStringify, {
+				allowDangerousHtml: true,
+			});
 
 		const processed = await processor.process(content);
 		return processed.toString();
 	} catch (error) {
 		console.error('Markdown processing failed:', error);
-		throw new Error('Failed to process Markdown content');
+		throw new Error(`Failed to process Markdown content: ${error instanceof Error ? error.message : 'Unknown error'}`);
 	}
 };
 
