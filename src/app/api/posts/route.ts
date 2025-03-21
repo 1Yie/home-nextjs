@@ -1,4 +1,11 @@
 import { getPosts } from '@/app/blog/post';
+import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
+
+export async function POST() {
+	revalidatePath('/sitemap.xml');
+	return new Response('OK');
+}
 
 export async function GET() {
 	const posts = await getPosts();
@@ -11,9 +18,5 @@ export async function GET() {
 		content: `https://ichiyo.in/blog/${post.slug}`,
 	}));
 
-	return new Response(JSON.stringify(postData), {
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
+	return NextResponse.json(postData);
 }
