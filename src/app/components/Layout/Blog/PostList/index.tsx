@@ -2,6 +2,8 @@ import style from './list.module.scss';
 import type { PostMetadata } from '@/app/blog/post';
 import Link from 'next/link';
 
+import Tag from '@/components/Public/Tag';
+
 const formatDate = (dateString: string) => {
 	const date = new Date(dateString);
 	return `${date.getFullYear()} 年 ${String(date.getMonth() + 1).padStart(2, '0')} 月 ${String(date.getDate()).padStart(2, '0')} 日`;
@@ -50,13 +52,7 @@ export default function BlogPage({ posts }: { posts: PostMetadata[] }) {
 										<h2>{post.title}</h2>
 										<div className={style.postMeta}>
 											<time className={style.postDate}>{formatDate(post.date)}</time>
-											<div className={style.tags}>
-												{post.tags?.map((tag: string) => (
-													<span key={tag} className={style.tag}>
-														{tag}
-													</span>
-												))}
-											</div>
+											<Tag tags={post.tags || []} />
 										</div>
 									</div>
 								</article>

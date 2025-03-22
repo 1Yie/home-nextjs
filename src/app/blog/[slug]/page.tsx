@@ -3,6 +3,7 @@ import { getPost } from '@/app/blog/post';
 import style from './post.module.scss';
 import { notFound } from 'next/navigation';
 import Comments from '@/app/components/Public/Comment';
+import Tag from '@/components/Public/Tag';
 
 import type { Metadata, ResolvingMetadata } from 'next';
 
@@ -67,13 +68,7 @@ export default async function PostPage({ params }: Props) {
 						</nav>
 						<div className={style.content}>
 							<h1>{post.title}</h1>
-							<div className={style.tags}>
-								{post.tags?.map((tag) => (
-									<span key={tag} className={style.tag}>
-										{tag}
-									</span>
-								))}
-							</div>
+							<Tag tags={post.tags || []} />
 							<time className={style.date}>{formatDate(post.date)}</time>
 						</div>
 					</div>

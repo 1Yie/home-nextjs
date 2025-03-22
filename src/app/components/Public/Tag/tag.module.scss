@@ -1,0 +1,19 @@
+.tags {
+	display: flex;
+	gap: 5px;
+	padding: 8px 0;
+	flex-wrap: wrap;
+
+	.tag {
+		padding: 0px 5px;
+		font-size: 20px;
+		background-color: var(--code-bg-color);
+		color: var(--code-color);
+		font-family: 'Source Code Pro', monospace;
+		transition: background-color 0.15s ease-in-out;
+		&:hover {
+			text-decoration: none;
+			background-color: var(--code-bg-color-hover);
+		}
+	}
+}
