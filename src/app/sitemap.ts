@@ -40,9 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		if (!apiBase) {
 			throw new Error('NEXT_PUBLIC_API_BASE is not defined in .env.local');
 		}
-		const response = await fetch(`${apiBase}/api/posts`, {
-			next: { revalidate: 60 },
-		});
+		const response = await fetch(`${apiBase}/api/posts`);
 
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
