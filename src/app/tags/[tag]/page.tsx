@@ -5,14 +5,18 @@ import style from './tag.module.scss';
 
 export const dynamic = 'force-dynamic';
 
+export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }) {
+	const resolvedParams = await params;
+	const decodedTag = decodeURIComponent(resolvedParams.tag);
+
+	return {
+		title: `ichiyo | ${decodedTag}`,
+	};
+}
+
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
-	let decodedTag: string;
-	try {
-		const { tag } = await params;
-		decodedTag = decodeURIComponent(tag);
-	} catch {
-		notFound();
-	}
+	const resolvedParams = await params;
+	const decodedTag = decodeURIComponent(resolvedParams.tag);
 
 	const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/posts`, { cache: 'no-store' });
 	const posts: PostMetadata[] = await response.json();

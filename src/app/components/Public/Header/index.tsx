@@ -27,32 +27,10 @@ const MenuSharp = dynamic(() => import('@ricons/ionicons5').then((mod) => mod.Me
 const Header = () => {
 	const pathname = usePathname();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [slugs, setSlugs] = useState<string[]>([]);
 	const menuRef = useRef<HTMLElement>(null);
 	const buttonRef = useRef<HTMLAnchorElement>(null);
 
-	useEffect(() => {
-		const fetchSlugs = async () => {
-			try {
-				const response = await fetch('/api/posts');
-				const data = await response.json();
-				setSlugs(data.map((post: { slug: string }) => post.slug));
-			} catch (error) {
-				console.error('Error fetching posts slugs:', error);
-			}
-		};
-
-		fetchSlugs();
-	}, []);
-
 	const isActiveLink = (link: string) => {
-		if (link === '/blog') {
-			const currentSlug = pathname.split('/').pop();
-			if (currentSlug && slugs.includes(currentSlug)) {
-				return true;
-			}
-			return pathname === '/blog';
-		}
 		return pathname === link;
 	};
 
