@@ -2,23 +2,34 @@ import Link from 'next/link';
 import { PostMetadata } from '@/app/blog/post';
 import style from './tags.module.scss';
 
-export default async function TagsPage() {
-	const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/posts`);
-	const posts: PostMetadata[] = await response.json();
+export async function getServerSideProps() {
+	try {
+		const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:3000';
+		const response = await fetch(`${API_BASE}/api/posts`);
+		if (!response.ok) throw new Error('Failed to fetch');
+		const posts: PostMetadata[] = await response.json();
 
-	const tagMap = posts.reduce((acc: Record<string, { count: number; posts: PostMetadata[] }>, post) => {
-		post.tags?.forEach((tag) => {
-			if (!acc[tag]) {
-				acc[tag] = { count: 0, posts: [] };
-			}
-			acc[tag].count += 1;
-			acc[tag].posts.push(post);
-		});
-		return acc;
-	}, {});
+		const tagMap = posts.reduce((acc: Record<string, { count: number; posts: PostMetadata[] }>, post) => {
+			post.tags?.forEach((tag) => {
+				if (!acc[tag]) {
+					acc[tag] = { count: 0, posts: [] };
+				}
+				acc[tag].count += 1;
+				acc[tag].posts.push(post);
+			});
+			return acc;
+		}, {});
 
-	const sortedTags = Object.entries(tagMap).sort(([, a], [, b]) => b.count - a.count);
+		const sortedTags = Object.entries(tagMap).sort(([, a], [, b]) => b.count - a.count);
 
+		return { props: { sortedTags } };
+	} catch (error) {
+		console.error('Error fetching posts:', error);
+		return { props: { sortedTags: [] } };
+	}
+}
+
+export default function TagsPage({ sortedTags }: { sortedTags: [string, { count: number; posts: PostMetadata[] }][] }) {
 	return (
 		<>
 			<div className={style.tagsContainer}>
