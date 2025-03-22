@@ -41,8 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 
-src/app/blog/post/*.md
-src/app/blog/post/**/*.md
+
 
 
 commit.md
