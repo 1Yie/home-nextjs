@@ -18,5 +18,10 @@ export async function GET() {
 		content: `https://ichiyo.in/blog/${post.slug}`,
 	}));
 
-	return NextResponse.json(postData);
+	return new NextResponse(JSON.stringify(postData), {
+		headers: {
+			'Content-Type': 'application/json',
+			'Cache-Control': 'no-cache, no-store, must-revalidate',
+		},
+	});
 }

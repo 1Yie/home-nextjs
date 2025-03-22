@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 type Post = {
 	slug: string;
 	date: string;
@@ -40,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		if (!apiBase) {
 			throw new Error('NEXT_PUBLIC_API_BASE is not defined in .env.local');
 		}
-		const response = await fetch(`${apiBase}/api/posts`);
+		const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/posts`, { cache: 'no-store' });
 
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
