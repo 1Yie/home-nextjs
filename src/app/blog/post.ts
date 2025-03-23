@@ -8,6 +8,8 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 import remarkAlerts from 'remark-alerts';
+import { visit } from 'unist-util-visit';
+import { Element as HastElement, Text as HastText } from 'hast';
 
 export type PostMetadata = {
 	title: string;
@@ -29,16 +31,45 @@ const processMarkdown = async (content: string): Promise<string> => {
 			.use(remarkParse)
 			.use(remarkGfm)
 			.use(remarkAlerts)
-			.use(remarkRehype, {
-				allowDangerousHtml: true,
-			})
+			.use(remarkRehype, { allowDangerousHtml: true })
 			.use(rehypeHighlight)
-			.use(rehypeStringify, {
-				allowDangerousHtml: true,
-			});
+			.use(rehypeStringify, { allowDangerousHtml: true });
 
-		const processed = await processor.process(content);
-		return processed.toString();
+		const file = await processor.parse(content);
+
+		const hastFile = processor.runSync(file);
+
+		visit(hastFile, 'element', (node) => {
+			if (node.tagName && node.tagName.startsWith('h') && node.tagName.length === 2) {
+				const level = parseInt(node.tagName[1], 10);
+				if (level >= 1 && level <= 6) {
+					const headingText = node.children
+						.filter((child): child is HastText => child.type === 'text')
+						.map((child) => child.value)
+						.join('');
+
+					(node as HastElement).properties = (node as HastElement).properties || {};
+					(node as HastElement).properties.id = headingText;
+
+					node.children.push({
+						type: 'element',
+						tagName: 'span',
+						properties: {
+							class: 'anchor-link',
+							onclick: `window.location.hash = '#${headingText}'`,
+						},
+						children: [
+							{
+								type: 'text',
+								value: '#',
+							},
+						],
+					});
+				}
+			}
+		});
+
+		return processor.stringify(hastFile);
 	} catch (error) {
 		console.error('Markdown processing failed:', error);
 		throw new Error(`Failed to process Markdown content: ${error instanceof Error ? error.message : 'Unknown error'}`);

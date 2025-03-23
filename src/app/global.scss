@@ -14,6 +14,41 @@
 		fill 0.5s ease-in-out;
 }
 
+.anchor-link {
+	opacity: 0;
+	padding: 0 0.5rem;
+	transition: opacity 0.3s ease;
+	-webkit-user-select: none;
+	user-select: none;
+	vertical-align: baseline;
+	font-size: inherit;
+
+	&:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
+
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+	opacity: 1;
+	color: var(--text-color);
+}
+
+h1:focus .anchor-link,
+h2:focus .anchor-link,
+h3:focus .anchor-link,
+h4:focus .anchor-link,
+h5:focus .anchor-link,
+h6:focus .anchor-link {
+	opacity: 1;
+	color: var(--text-color);
+}
+
 html {
 	padding: 0;
 	margin: 0;
