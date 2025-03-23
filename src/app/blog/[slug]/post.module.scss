@@ -260,6 +260,10 @@
 	.postContent {
 		#postDown {
 			padding: 20px 30px;
+
+			.postStyle blockquote {
+				margin: 0 10px;
+			}
 		}
 	}
 }
