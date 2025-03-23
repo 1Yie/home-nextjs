@@ -4,6 +4,7 @@ import style from './post.module.scss';
 import { notFound } from 'next/navigation';
 import Comments from '@/app/components/Public/Comment';
 import Tag from '@/components/Public/Tag';
+import ImageZoom from '@/components/Public/ImgZoom';
 
 import type { Metadata, ResolvingMetadata } from 'next';
 
@@ -80,13 +81,19 @@ export default async function PostPage({ params }: Props) {
 			<div className={style.postContent}>
 				<section id={style.postDown}>
 					<article>
-						<div className={style.postStyle} dangerouslySetInnerHTML={{ __html: post.content }} />
+						<div
+							className={style.postStyle}
+							dangerouslySetInnerHTML={{
+								__html: post.content.replace(/<img/g, '<img data-zoom="true"'),
+							}}
+						/>
 					</article>
 				</section>
 			</div>
 			<div className={style.space}>
 				<section id={style.spaceContent}></section>
 			</div>
+			<ImageZoom />
 			<Comments />
 		</>
 	);

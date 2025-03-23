@@ -80,6 +80,15 @@ a {
 	}
 }
 
+.medium-zoom-overlay {
+	z-index: 1000;
+	background: var(--bg-color) !important;
+}
+
+.medium-zoom-image {
+	z-index: 1001;
+}
+
 ::selection {
 	background-color: var(--selection-color);
 }
