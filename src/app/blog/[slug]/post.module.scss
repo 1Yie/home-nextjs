@@ -181,39 +181,30 @@
 				:global(svg) {
 					width: 20px;
 					height: 20px;
+					fill: var(--text-color);
 					image-rendering: pixelated;
 				}
 			}
 		}
 
 		:global(.markdown-alert-warning) {
-			background-color: #fff3cd;
-			border-color: #ffeeba;
-			color: #856404;
+			background-color: var(--alert-warning-color);
 		}
 
 		:global(.markdown-alert-note) {
-			background-color: #d1ecf1;
-			border-color: #bee5eb;
-			color: #0c5460;
+			background-color: var(--alert-note-color);
 		}
 
 		:global(.markdown-alert-tip) {
-			background-color: #d4edda;
-			border-color: #c3e6cb;
-			color: #155724;
+			background-color: var(--alert-tip-color);
 		}
 
 		:global(.markdown-alert-important) {
-			background-color: #f8d7da;
-			border-color: #f5c6cb;
-			color: #721c24;
+			background-color: var(--alert-important-color);
 		}
 
 		:global(.markdown-alert-caution) {
-			background-color: #eda3a9;
-			border-color: #f6b1b8;
-			color: #721c24;
+			background-color: var(--alert-caution-color);
 		}
 
 		:global(.footnotes) {

@@ -54,6 +54,13 @@
 
 	/* fill 颜色（图标） */
 	--fill-color: #3b3b3b;
+
+	/* alert 颜色 */
+	--alert-warning-color: #fff3cd;
+	--alert-note-color: #d1ecf1;
+	--alert-tip-color: #d4edda;
+	--alert-important-color: #f8d7da;
+	--alert-caution-color: #eda3a9;
 }
 
 /* 深色模式颜色 */
@@ -114,5 +121,12 @@
 
 		/* fill 颜色（图标） */
 		--fill-color: #b0b0b0;
+
+		/* alert 颜色 */
+		--alert-warning-color: #66512c;
+		--alert-note-color: #0c5460;
+		--alert-tip-color: #155724;
+		--alert-important-color: #843534;
+		--alert-caution-color: #721c24;
 	}
 }
