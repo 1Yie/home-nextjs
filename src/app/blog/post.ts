@@ -56,14 +56,12 @@ const processMarkdown = async (content: string): Promise<string> => {
 						tagName: 'span',
 						properties: {
 							class: 'anchor-link',
-							onclick: `window.location.hash = '#${headingText}'`,
+							onclick:
+								`const el=document.getElementById('${headingText}');` +
+								`if(el){el.scrollIntoView({behavior:'smooth'});` +
+								`history.replaceState(null,'','#${headingText}');}`,
 						},
-						children: [
-							{
-								type: 'text',
-								value: '#',
-							},
-						],
+						children: [{ type: 'text', value: '#' }],
 					});
 				}
 			}
