@@ -46,7 +46,7 @@ export default function BlogPage({ posts }: { posts: PostMetadata[] }) {
 					</div>
 					<div className={style.postsList}>
 						{sortedPosts.map((post) => (
-							<a key={post.slug} href={`/blog/${post.slug}`} className={style.postLink}>
+							<Link key={post.slug} href={`/blog/${post.slug}`} className={style.postLink}>
 								<article className={style.postCard}>
 									<div className={style.postPanel}>
 										<h2>{post.title}</h2>
@@ -56,7 +56,7 @@ export default function BlogPage({ posts }: { posts: PostMetadata[] }) {
 										</div>
 									</div>
 								</article>
-							</a>
+							</Link>
 						))}
 					</div>
 				</section>
