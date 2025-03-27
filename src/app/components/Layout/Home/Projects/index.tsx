@@ -1,8 +1,16 @@
 'use client';
 
-import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import style from './projects.module.scss';
+import React, { useState, useEffect } from 'react';
+import ContributionCalendar from '@/app/components/Public/ContributionCalendar';
+
+export interface Contribution {
+	level: number;
+	count: number;
+	date: number;
+}
+
 
 const Icon = dynamic(() => import('@ricons/utils').then((mod) => mod.Icon), {
 	ssr: false,
@@ -41,8 +49,23 @@ const projects = [
 ];
 
 export default function Projects() {
+
+	const [contributions, setContributions] = useState<Contribution[]>([]);
+
+	useEffect(() => {
+		const fetchContributions = async () => {
+			const username = '1Yie';
+			const response = await fetch(`api/github?username=${username}`);
+			const data = await response.json();
+			setContributions(data);
+		};
+
+		fetchContributions();
+	}, []);
+
 	return (
 		<>
+
 			<div className={style.github}>
 				<section id={style.contributionSection}>
 					<div className={style.content}>
@@ -51,20 +74,7 @@ export default function Projects() {
 						</div>
 					</div>
 					<div className={style.chartWrapper}>
-						<Image
-							src="https://ghchart.rshah.org/202020/1Yie"
-							alt=""
-							width={0}
-							height={200}
-							style={{
-								display: 'block',
-								width: '1000px',
-								objectFit: 'contain',
-								margin: '0 auto',
-								transition: 'filter 0.3s ease',
-							}}
-							priority
-						/>
+					<ContributionCalendar contributions={contributions} className={style.contributionCalendar} />
 					</div>
 				</section>
 			</div>

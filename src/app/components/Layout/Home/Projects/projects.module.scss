@@ -116,7 +116,7 @@
 
 		.chartWrapper {
 			overflow-x: auto;
-			padding: 20px;
+			
 		}
 	}
 }
@@ -158,14 +158,6 @@
 				border-right: none;
 				align-items: center;
 				text-align: center;
-			}
-		}
-	}
-
-	.github {
-		#contributionSection {
-			.chartWrapper {
-				padding: 0 20px;
 			}
 		}
 	}

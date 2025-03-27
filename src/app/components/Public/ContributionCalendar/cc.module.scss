@@ -15,7 +15,7 @@
 	font-size: 12px;
 	padding: 40px;
 	@include mobile-layout {
-		display: none;
+		padding: 15px;
 	}
 }
 
@@ -29,6 +29,7 @@
 	grid-column: 1/2;
 	line-height: 10px;
 	margin-right: 3px;
+	white-space: nowrap;
 
 	& + .week {
 		grid-row: 5;
