@@ -17,7 +17,7 @@ const Code = dynamic(() => import('@ricons/fa').then((mod) => mod.Code), {
 const CheckCircle = dynamic(() => import('@ricons/fa').then((mod) => mod.CheckCircle), { ssr: false });
 
 const githubTitle = {
-	title: 'Github 贡献',
+	title: 'GitHub 贡献',
 };
 
 const projectTitle = {
