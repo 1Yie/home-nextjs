@@ -7,7 +7,7 @@ export default function ImageZoom() {
 	useEffect(() => {
 		const images = document.querySelectorAll('img[data-zoom="true"]');
 		mediumZoom(images, {
-			margin: 24,
+			margin: 12,
 		});
 	}, []);
 
