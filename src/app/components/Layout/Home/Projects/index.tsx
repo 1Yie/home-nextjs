@@ -11,7 +11,6 @@ export interface Contribution {
 	date: number;
 }
 
-
 const Icon = dynamic(() => import('@ricons/utils').then((mod) => mod.Icon), {
 	ssr: false,
 });
@@ -49,7 +48,6 @@ const projects = [
 ];
 
 export default function Projects() {
-
 	const [contributions, setContributions] = useState<Contribution[]>([]);
 
 	useEffect(() => {
@@ -65,7 +63,6 @@ export default function Projects() {
 
 	return (
 		<>
-
 			<div className={style.github}>
 				<section id={style.contributionSection}>
 					<div className={style.content}>
@@ -74,7 +71,7 @@ export default function Projects() {
 						</div>
 					</div>
 					<div className={style.chartWrapper}>
-					<ContributionCalendar contributions={contributions} className={style.contributionCalendar} />
+						<ContributionCalendar contributions={contributions} className={style.contributionCalendar} />
 					</div>
 				</section>
 			</div>

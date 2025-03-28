@@ -13,6 +13,7 @@
 	margin: 0 auto;
 	width: fit-content;
 	font-size: 12px;
+	color: var(--text-color);
 	padding: 40px;
 	@include mobile-layout {
 		padding: 15px;
