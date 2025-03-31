@@ -8,7 +8,7 @@ demo：[ichiyo(@1Yie)](https://ichiyo.in)
 
 ## 博客
 
-博客使用 Markdown 编写，通过在 `src/app/blog/post` 目录下获取 md 文件，通过 `gray-matter` 解析成 HTML，然后在 Next.js 中渲染。
+博客使用 Markdown 编写，通过在 `src/app/blog/post` 目录下获取 md 文件，并解析为 HTML 展示。
 
 > 添加博客在 `src/app/blog/post` 添加 md 文件即可。
 
