@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Comments from '@/app/components/Public/Comment';
 import Tag from '@/components/Public/Tag';
 import ImageZoom from '@/components/Public/ImgZoom';
+import TopAnchor from '@/app/components/Public/TopAnchor';
 
 import type { Metadata, ResolvingMetadata } from 'next';
 
@@ -54,6 +55,7 @@ export default async function PostPage({ params }: Props) {
 
 	return (
 		<>
+			<TopAnchor />
 			<div className={style.postTitle}>
 				<section id={style.postTop}>
 					<div className={style.titlePanel}>
