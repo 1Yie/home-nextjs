@@ -8,13 +8,10 @@ const TopAnchor = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
+            const { scrollY, innerHeight } = window;
+            const { scrollHeight } = document.documentElement;
             
-            const shouldShow = scrollY > 300 && (scrollY + windowHeight < documentHeight - 100);
-            
-            setIsVisible(shouldShow);
+            setIsVisible(scrollY > 300 && (scrollY + innerHeight < scrollHeight - 100));
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -27,11 +24,11 @@ const TopAnchor = () => {
 
     return (
         <div 
-            className={`${style.top} ${isVisible ? style.visible : ''}`} 
-            onClick={scrollToTop}
-            aria-label="返回顶部"
+            className={`${style.top} ${isVisible ? style.visible : style.hidden}`} 
+            onClick={isVisible ? scrollToTop : undefined}
+            aria-hidden={!isVisible}
         >
-            <div className={style.triangle}></div>
+            <div className={style.triangle} />
         </div>
     );
 };
