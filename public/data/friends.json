@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "name": "Example",
+    "image": "https://iph.href.lu/150x150?fg=666666&bg=cccccc",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "social": [
+      {
+        "name": "GitHub",
+        "link": "https://github.com/example",
+        "icon": "githu b-fill.svg"
+      },
+      {
+        "name": "X",
+        "link": "https://x.com/example",
+        "icon": "x-fill.svg"
+      }
+    ]
+  }
+]

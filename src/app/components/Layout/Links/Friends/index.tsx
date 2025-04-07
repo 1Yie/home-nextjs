@@ -5,8 +5,6 @@ import style from './friends.module.scss';
 import Image from 'next/image';
 import SocialIcon, { Social } from '@/components/Public/SocialIcon';
 
-
-
 interface Friend {
 	name: string;
 	image: string;
@@ -36,14 +34,7 @@ export default function Friends() {
 				<div className={style.friendsList}>
 					{friendsList.map((friend, index) => (
 						<div key={index} className={`${style.friendsItem} ${index % 2 === 0 ? style.leftAlign : style.rightAlign}`}>
-							<Image
-								src={friend.image}
-								alt={friend.name}
-								className={style.friendImg}
-								width={150}
-								height={150}
-								priority
-							/>
+							<Image src={friend.image} alt={friend.name} className={style.friendImg} width={150} height={150} priority />
 							<div className={style.friendInfo}>
 								<h3 className={style.friendName}>{friend.name}</h3>
 								<p className={style.friendDescription}>{friend.description}</p>

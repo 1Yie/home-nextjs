@@ -7,7 +7,7 @@ import style from './social.module.scss';
 export interface Social {
 	name: string;
 	link: string;
-	icon?: string; 
+	icon?: string;
 }
 
 export default function SocialIcon({ social }: { social: Social }) {
@@ -18,26 +18,14 @@ export default function SocialIcon({ social }: { social: Social }) {
 
 	if (hasError) {
 		return (
-			<a
-				href={social.link}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={style.socialLink}
-				aria-label={`${social.name} link`}
-			>
+			<a href={social.link} target="_blank" rel="noopener noreferrer" className={style.socialLink} aria-label={`${social.name} link`}>
 				<span className={style.iconFallback}>{social.name}</span>
 			</a>
 		);
 	}
 
 	return (
-		<a
-			href={social.link}
-			target="_blank"
-			rel="noopener noreferrer"
-			className={style.socialLink}
-			aria-label={`${social.name} link`}
-		>
+		<a href={social.link} target="_blank" rel="noopener noreferrer" className={style.socialLink} aria-label={`${social.name} link`}>
 			<Image
 				src={iconPath}
 				alt={`${social.name} icon`}

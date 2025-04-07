@@ -11,11 +11,7 @@ export default function Content() {
 				<section id={style.content}>
 					<div className={style.contentInner}>
 						<div className={style.nameIcon}>
-							<Gravatar
-								email={email}
-								size={128}
-								className={style.gravatar}
-							/>
+							<Gravatar email={email} size={128} className={style.gravatar} />
 						</div>
 						<span className={style.nameInfo}>
 							<h1>ichiyo</h1>
