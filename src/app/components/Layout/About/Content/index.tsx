@@ -1,11 +1,22 @@
 import style from './content.module.scss';
 
+import Gravatar from '@/lib/gravatar';
+
+const email = 'me@ichiyo.in';
+
 export default function Content() {
 	return (
 		<>
 			<div className={style.contentContainer}>
 				<section id={style.content}>
 					<div className={style.contentInner}>
+						<div className={style.nameIcon}>
+							<Gravatar
+								email={email}
+								size={128}
+								className={style.gravatar}
+							/>
+						</div>
 						<span className={style.nameInfo}>
 							<h1>ichiyo</h1>
 							<p>

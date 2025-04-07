@@ -74,11 +74,8 @@
 .space {
 	border-bottom: 1px solid var(--border-color);
 
-	#spaceConent {
+	#spaceContent {
 		height: 60px;
-
-		background-size: 100%;
-		background-image: repeating-linear-gradient(135deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 6px);
 	}
 }
 

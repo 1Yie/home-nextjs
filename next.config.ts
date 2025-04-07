@@ -14,7 +14,12 @@ const nextConfig: NextConfig = {
 				protocol: 'https',
 				hostname: 'ghchart.rshah.org',
 				port: '',
-
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'www.gravatar.com',
+				port: '',
 				pathname: '/**',
 			},
 		],
