@@ -7,7 +7,7 @@ import Footer from '@/app/components/Public/Footer';
 
 const ubuntu = Ubuntu_Sans({
 	subsets: ['latin'],
-	weight: ['300', '400', '500', '700'],
+	weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
 	style: ['normal', 'italic'],
 	display: 'swap',
 });
@@ -34,11 +34,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<meta name="description" content="Hi there! I'm ichiyo. Welcome to my Homepage." />
 				<meta name="author" content="ichiyo" />
-				<meta
-					name="keywords"
-					content="ichiyo,ICHIYO,Homepage,Blog,React,JavaScript,TypeScript,Web Development,Web"
-				/>
-		
+				<meta name="keywords" content="ichiyo,ICHIYO,Homepage,Blog,React,JavaScript,TypeScript,Web Development,Web" />
+
 				<link rel="stylesheet" href="https://static.zeoseven.com/zsft/309/main/result.css" />
 
 				<title>ichiyo (@1Yie)</title>
