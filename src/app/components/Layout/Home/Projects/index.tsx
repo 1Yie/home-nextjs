@@ -22,6 +22,7 @@ const Code = dynamic(() => import('@ricons/fa').then((mod) => mod.Code), {
 });
 
 const CheckCircle = dynamic(() => import('@ricons/fa').then((mod) => mod.CheckCircle), { ssr: false });
+const CalendarCheck = dynamic(() => import('@ricons/fa').then((mod) => mod.CalendarCheck), { ssr: false });
 
 const githubTitle = {
 	title: 'GitHub 贡献',
@@ -36,9 +37,16 @@ const iconComponents = {
 	Blog: BookOpen,
 	Code: Code,
 	Check: CheckCircle,
+	CalendarCheck: CalendarCheck,
 };
 
 const projects = [
+	{
+		name: '今天你做到了吗？',
+		description: '由 Reflex 开发，一个简单的在线打卡工具',
+		link: 'https://check.ichiyo.in/',
+		icon: 'CalendarCheck' as const,
+	},
 	{
 		name: 'ICHIYO STATUS',
 		description: '用于检测各种服务的状态',
