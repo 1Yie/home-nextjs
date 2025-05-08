@@ -1,8 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import style from './projects.module.scss';
-import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import ContributionCalendar from '@/app/components/Public/ContributionCalendar';
 
 export interface Contribution {
@@ -11,17 +11,15 @@ export interface Contribution {
 	date: number;
 }
 
-const Icon = dynamic(() => import('@ricons/utils').then((mod) => mod.Icon), {
-	ssr: false,
-});
-
-const BookOpen = dynamic(() => import('@ricons/fa').then((mod) => mod.BookOpen), { ssr: false });
-
-const Code = dynamic(() => import('@ricons/fa').then((mod) => mod.Code), {
-	ssr: false,
-});
-
-const CheckCircle = dynamic(() => import('@ricons/fa').then((mod) => mod.CheckCircle), { ssr: false });
+interface Project {
+	name: string;
+	description: string;
+	link: string;
+	icon: {
+		light: string;
+		dark: string;
+	};
+}
 
 const githubTitle = {
 	title: 'GitHub 贡献',
@@ -32,34 +30,50 @@ const projectTitle = {
 	subtitle: '不才明主弃，多病故人疏。',
 };
 
-const iconComponents = {
-	Blog: BookOpen,
-	Code: Code,
-	Check: CheckCircle,
-};
-
-const projects = [
-	{
-		name: 'ICHIYO STATUS',
-		description: '用于检测各种服务的状态',
-		link: 'https://status.ichiyo.in/',
-		icon: 'Check' as const,
-	},
-];
-
 export default function Projects() {
 	const [contributions, setContributions] = useState<Contribution[]>([]);
+	const [projects, setProjects] = useState<Project[]>([]);
+	const [isDarkMode, setIsDarkMode] = useState(false);
 
 	useEffect(() => {
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		setIsDarkMode(mediaQuery.matches);
+
+		const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+		mediaQuery.addEventListener('change', handler);
+
 		const fetchContributions = async () => {
-			const username = '1Yie';
-			const response = await fetch(`api/github?username=${username}`);
-			const data = await response.json();
-			setContributions(data);
+			try {
+				const username = '1Yie';
+				const response = await fetch(`api/github?username=${username}`);
+				const data = await response.json();
+				setContributions(data);
+			} catch (error) {
+				console.error('Failed to load GitHub contributions:', error);
+			}
+		};
+
+		const fetchProjects = async () => {
+			try {
+				const res = await fetch('/data/projects.json');
+				const data: Project[] = await res.json();
+				setProjects(data);
+			} catch (error) {
+				console.error('Failed to load projects:', error);
+			}
 		};
 
 		fetchContributions();
+		fetchProjects();
+
+		return () => {
+			mediaQuery.removeEventListener('change', handler);
+		};
 	}, []);
+
+	const getIconPath = (icon: { light: string; dark: string }) => {
+		return `/icons/${isDarkMode ? icon.dark : icon.light}`;
+	};
 
 	return (
 		<>
@@ -84,36 +98,25 @@ export default function Projects() {
 					</div>
 
 					<ul className={style.projectList}>
-						{projects.map((project, index) => {
-							const IconComponent = iconComponents[project.icon];
-
-							if (!IconComponent) {
-								console.warn(`Icon component not found for icon name: ${project.icon}`);
-								return null;
-							}
-
-							return (
-								<a
-									key={index}
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									className={style.project}
-									aria-label={`访问项目：${project.name}`}
-								>
-									<div className={style.logo}>
-										<Icon size="48">
-											<IconComponent aria-hidden="true" />
-										</Icon>
-									</div>
-									<div className={style.details}>
-										<h3>{project.name}</h3>
-										<p>{project.description}</p>
-									</div>
-									<div className={style.empty}></div>
-								</a>
-							);
-						})}
+						{projects.map((project, index) => (
+							<a
+								key={index}
+								href={project.link}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={style.project}
+								aria-label={`访问项目：${project.name}`}
+							>
+								<div className={style.logo}>
+									<Image src={getIconPath(project.icon)} alt={project.name} width={48} height={48} className={style.icon} />
+								</div>
+								<div className={style.details}>
+									<h3>{project.name}</h3>
+									<p>{project.description}</p>
+								</div>
+								<div className={style.empty}></div>
+							</a>
+						))}
 					</ul>
 				</section>
 			</div>
