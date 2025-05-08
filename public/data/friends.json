@@ -7,12 +7,18 @@
       {
         "name": "GitHub",
         "link": "https://github.com/example",
-        "icon": "githu b-fill.svg"
+        "icon": {
+          "light": "github-line-light.svg",
+          "dark": "github-line-dark.svg"
+        }
       },
       {
         "name": "X",
         "link": "https://x.com/example",
-        "icon": "x-fill.svg"
+        "icon": {
+          "light": "x-light.svg",
+          "dark": "x-dark.svg"
+        }
       }
     ]
   }

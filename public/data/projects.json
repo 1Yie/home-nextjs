@@ -1,0 +1,20 @@
+[
+  {
+    "name": "今天你做到了吗？",
+    "description": "由 Reflex 开发，一个简单的在线打卡工具",
+    "link": "https://check.ichiyo.in/",
+    "icon": {
+      "light": "check-light.svg",
+      "dark": "check-dark.svg"
+    }
+  },
+  {
+    "name": "ICHIYO STATUS",
+    "description": "用于检测各种服务的状态",
+    "link": "https://status.ichiyo.in/",
+    "icon": {
+      "light": "status-light.svg",
+      "dark": "status-dark.svg"
+    }
+  }
+]
