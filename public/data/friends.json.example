@@ -7,12 +7,18 @@
       {
         "name": "GitHub",
         "link": "https://github.com/example",
-        "icon": "github-fill.svg"
+        "icon": {
+          "light": "https://file.ichiyo.in/sakura/icons/github-line-light.svg",
+          "dark": "https://file.ichiyo.in/sakura/icons/github-line-dark.svg"
+        }
       },
       {
         "name": "X",
         "link": "https://x.com/example",
-        "icon": "x-fill.svg"
+        "icon": {
+          "light": "https://file.ichiyo.in/sakura/icons/x-light.svg",
+          "dark": "https://file.ichiyo.in/sakura/icons/x-dark.svg"
+        }
       }
     ]
   }

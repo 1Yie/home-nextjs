@@ -72,7 +72,7 @@ export default function Projects() {
 	}, []);
 
 	const getIconPath = (icon: { light: string; dark: string }) => {
-		return `/icons/${isDarkMode ? icon.dark : icon.light}`;
+		return isDarkMode ? icon.dark : icon.light;
 	};
 
 	return (

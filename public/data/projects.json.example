@@ -4,8 +4,8 @@
     "description": "由 Reflex 开发，一个简单的在线打卡工具",
     "link": "https://check.ichiyo.in/",
     "icon": {
-      "light": "check-light.svg",
-      "dark": "check-dark.svg"
+      "light": "https://file.ichiyo.in/sakura/icons/check-light.svg",
+      "dark": "https://file.ichiyo.in/sakura/icons/check-dark.svg"
     }
   },
   {
@@ -13,8 +13,8 @@
     "description": "用于检测各种服务的状态",
     "link": "https://status.ichiyo.in/",
     "icon": {
-      "light": "status-light.svg",
-      "dark": "status-dark.svg"
+      "light": "https://file.ichiyo.in/sakura/icons/status-light.svg",
+      "dark": "https://file.ichiyo.in/sakura/icons/status-dark.svg"
     }
   }
 ]
