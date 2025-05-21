@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
 				hostname: 'file.ichiyo.in',
 				port: '',
 				pathname: '/**',
-			}
+			},
 		],
 	},
 };

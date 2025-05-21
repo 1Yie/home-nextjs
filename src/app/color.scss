@@ -61,6 +61,9 @@
 	--alert-tip-color: #d4edda;
 	--alert-important-color: #f8d7da;
 	--alert-caution-color: #eda3a9;
+
+	/* 页面加载进度条颜色 */
+	--progress-bar-color: rgb(0, 0, 0);
 }
 
 /* 深色模式颜色 */
@@ -128,5 +131,8 @@
 		--alert-tip-color: #155724;
 		--alert-important-color: #843534;
 		--alert-caution-color: #721c24;
+
+		/* 页面加载进度条颜色 */
+		--progress-bar-color: rgba(255, 255, 255, 0.8);
 	}
 }
