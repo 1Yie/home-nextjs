@@ -29,10 +29,41 @@ const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLElement>(null);
 	const buttonRef = useRef<HTMLAnchorElement>(null);
+	const scrollY = useRef(0);
 
-	const isActiveLink = (link: string) => {
-		return pathname === link;
-	};
+	const isActiveLink = (link: string) => pathname === link;
+
+	// 禁止滚动逻辑
+	useEffect(() => {
+		if (isMenuOpen) {
+			// 滚动到顶部
+			scrollY.current = window.scrollY;
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+
+			// 锁定滚动
+			document.body.style.position = 'fixed';
+			document.body.style.top = '0';
+			document.body.style.left = '0';
+			document.body.style.right = '0';
+			document.body.style.overflow = 'hidden';
+		} else {
+			// 恢复滚动
+			document.body.style.position = '';
+			document.body.style.top = '';
+			document.body.style.left = '';
+			document.body.style.right = '';
+			document.body.style.overflow = '';
+		}
+
+		return () => {
+			// 清理，防止泄漏
+			document.body.style.position = '';
+			document.body.style.top = '';
+			document.body.style.left = '';
+			document.body.style.right = '';
+			document.body.style.overflow = '';
+		};
+	}, [isMenuOpen]);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -54,7 +85,9 @@ const Header = () => {
 
 	return (
 		<header className={style.header}>
-			<section>
+			
+
+			<section id={style.headerPanel}>
 				<div className={style.headerContainer}>
 					<Link href={headerName.link} className="HtmlLogo">
 						{headerName.name}
@@ -78,6 +111,7 @@ const Header = () => {
 						</ul>
 					</nav>
 				</div>
+				{isMenuOpen && <div className={style.blurOverlay} onClick={() => setIsMenuOpen(false)}></div>}
 			</section>
 		</header>
 	);
