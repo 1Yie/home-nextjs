@@ -58,6 +58,12 @@
 		}
 	}
 }
+.intro {
+	border-top: 1px solid var(--border-color);
+	#carousel {
+		padding: 60px 0px;
+	}
+}
 
 .space {
 	border-bottom: 1px solid var(--border-color);
