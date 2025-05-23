@@ -67,7 +67,7 @@ export default function Content() {
 					<section id={style.scrollPanel}>
 						<ScrollVelocity
 							texts={['Photos Moment', 'Record Life']}
-							velocity={70}
+							velocity={40}
 							parallaxClassName={style.bannerBg}
 							scrollerClassName={style.bannerText}
 						/>
