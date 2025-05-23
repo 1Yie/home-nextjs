@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import style from './content.module.scss';
 import Gravatar from '@/lib/gravatar';
 import { Carousel } from '@/components/Public/Carousel';
+import { ScrollVelocity } from '@/components/Public/ScrollVelocity';
+import SplitText from '@/components/Public/SplitText';
 
 const email = 'me@ichiyo.in';
 
@@ -33,7 +35,17 @@ export default function Content() {
 							<Gravatar email={email} size={128} className={style.gravatar} />
 						</div>
 						<span className={style.nameInfo}>
-							<h1>ichiyo</h1>
+							<h1>
+								<SplitText
+									text="Ichiyo"
+									delay={50}
+									animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+									animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+									threshold={0.2}
+									rootMargin="-50px"
+									easing={(t) => t * t}
+								/>
+							</h1>
 							<p>
 								取自罗马音<strong>一葉</strong>（Ichiyō）为名。
 							</p>
@@ -51,6 +63,16 @@ export default function Content() {
 						</p>
 					</div>
 				</section>
+				<div className={style.scrollBanner}>
+					<section id={style.scrollPanel}>
+						<ScrollVelocity
+							texts={['Photos Moment', 'Record Life']}
+							velocity={70}
+							parallaxClassName={style.bannerBg}
+							scrollerClassName={style.bannerText}
+						/>
+					</section>
+				</div>
 				<div className={style.intro}>
 					<section id={style.carousel}>
 						<div className={style.carouselInner}>

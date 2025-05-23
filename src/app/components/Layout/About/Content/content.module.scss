@@ -58,10 +58,34 @@
 		}
 	}
 }
+
+.scrollBanner {
+	#scrollPanel {
+		border-top: 1px solid var(--border-color);
+		border-bottom: 1px solid var(--border-color);
+
+		.bannerBg {
+			background-size: 100%;
+			background-image: repeating-linear-gradient(-135deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 6px);
+		}
+
+		.bannerBg:nth-of-type(even) {
+			background-image: repeating-linear-gradient(135deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 6px);
+		}
+
+		.bannerText {
+			color: var(--text-color);
+			padding: 0px;
+			margin: 0px;
+			font-family: 'Source Code Pro', monospace;
+		}
+	}
+}
+
 .intro {
-	border-top: 1px solid var(--border-color);
 	#carousel {
-		padding: 60px 0px;
+		padding: 20px 0px;
+		background-color: var(--bg-sub-space-color);
 	}
 }
 

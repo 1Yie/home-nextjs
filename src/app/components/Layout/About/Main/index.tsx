@@ -9,7 +9,7 @@ const About = () => {
 				</section>
 			</div>
 			<div className={style.space}>
-				<section id={style.spaceConent}></section>
+				<section id={style.spaceContent}></section>
 			</div>
 		</>
 	);

@@ -3,7 +3,7 @@ import { ContainerTextFlip } from '@/components/Public/ContainerTextFlip';
 
 const titles = {
 	subtitle: '欢迎访问寒舍',
-	words: ['CV战士', 'AI依赖症', '程序猿', 'BUG制造者', '键盘侠', '咖啡依赖症', '拖延症晚期', '栈溢出患者', '前端小透明'],
+	words: ['边缘', 'CV战士', 'AI依赖症', '程序猿', 'BUG制造者', '咖啡依赖症', '拖延症晚期', '前端小透明'],
 };
 
 const Home = () => {
