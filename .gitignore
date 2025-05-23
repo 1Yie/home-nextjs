@@ -49,6 +49,9 @@ next-env.d.ts
 
 src/app/blog/post/*.md
 src/app/blog/post/**/*.md
+/public/data/friends.json
+/public/data/projects.json
+/public/data/slides.json
 
 
 commit.md
