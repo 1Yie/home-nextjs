@@ -36,18 +36,15 @@ const Header = () => {
 	// 禁止滚动逻辑
 	useEffect(() => {
 		if (isMenuOpen) {
-			// 滚动到顶部
 			scrollY.current = window.scrollY;
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 
-			// 锁定滚动
 			document.body.style.position = 'fixed';
 			document.body.style.top = '0';
 			document.body.style.left = '0';
 			document.body.style.right = '0';
 			document.body.style.overflow = 'hidden';
 		} else {
-			// 恢复滚动
 			document.body.style.position = '';
 			document.body.style.top = '';
 			document.body.style.left = '';
@@ -56,7 +53,6 @@ const Header = () => {
 		}
 
 		return () => {
-			// 清理，防止泄漏
 			document.body.style.position = '';
 			document.body.style.top = '';
 			document.body.style.left = '';
@@ -65,6 +61,7 @@ const Header = () => {
 		};
 	}, [isMenuOpen]);
 
+	// 点击外部关闭菜单
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -109,7 +106,7 @@ const Header = () => {
 						</ul>
 					</nav>
 				</div>
-				{isMenuOpen && <div className={style.blurOverlay} onClick={() => setIsMenuOpen(false)}></div>}
+				<div className={`${style.blurOverlay} ${isMenuOpen ? style.active : ''}`} onClick={() => setIsMenuOpen(false)} />
 			</section>
 		</header>
 	);
