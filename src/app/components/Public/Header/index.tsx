@@ -85,8 +85,6 @@ const Header = () => {
 
 	return (
 		<header className={style.header}>
-			
-
 			<section id={style.headerPanel}>
 				<div className={style.headerContainer}>
 					<Link href={headerName.link} className="HtmlLogo">

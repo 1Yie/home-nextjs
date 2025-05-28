@@ -60,24 +60,26 @@
 }
 
 .scrollBanner {
-	#scrollPanel {
-		border-top: 1px solid var(--border-color);
-		border-bottom: 1px solid var(--border-color);
+	border-top: 1px solid var(--border-color);
+	border-bottom: 1px solid var(--border-color);
+	background-color: var(--bg-color-reverse);
 
-		.bannerBg {
-			background-size: 100%;
-			background-image: repeating-linear-gradient(-135deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 6px);
+	border-left: none;
+	border-right: none;
+	.bannerBg {
+		&:hover {
+			background-color: var(--bg-color);
 		}
+	}
 
-		.bannerBg:nth-of-type(even) {
-			background-image: repeating-linear-gradient(135deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 6px);
-		}
+	.bannerText {
+		color: var(--text-color-reverse);
+		padding: 0px;
+		margin: 0px;
+		font-family: 'Source Code Pro', monospace;
 
-		.bannerText {
+		&:hover {
 			color: var(--text-color);
-			padding: 0px;
-			margin: 0px;
-			font-family: 'Source Code Pro', monospace;
 		}
 	}
 }

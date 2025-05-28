@@ -64,14 +64,12 @@ export default function Content() {
 					</div>
 				</section>
 				<div className={style.scrollBanner}>
-					<section id={style.scrollPanel}>
-						<ScrollVelocity
-							texts={['Photos Moment', 'Record Life']}
-							velocity={40}
-							parallaxClassName={style.bannerBg}
-							scrollerClassName={style.bannerText}
-						/>
-					</section>
+					<ScrollVelocity
+						texts={['Photos Moment', 'Record Life']}
+						velocity={40}
+						parallaxClassName={style.bannerBg}
+						scrollerClassName={style.bannerText}
+					/>
 				</div>
 				<div className={style.intro}>
 					<section id={style.carousel}>
