@@ -51,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					height={3}
 					crawl={true}
 					showSpinner={false}
+					zIndex={9999}
 					easing="ease"
 					speed={200}
 					shadow="0 0 10px var(--progress-bar-color),0 0 5px var(--progress-bar-color)"

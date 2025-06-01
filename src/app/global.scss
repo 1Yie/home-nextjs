@@ -6,6 +6,11 @@
 
 @import 'artalk/dist/Artalk.css';
 
+#nprogress {
+	position: relative;
+	z-index: 9999;
+}
+
 * {
 	transition:
 		background-color 0.5s ease-in-out,
