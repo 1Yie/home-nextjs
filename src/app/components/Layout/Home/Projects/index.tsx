@@ -99,23 +99,16 @@ export default function Projects() {
 
 					<ul className={style.projectList}>
 						{projects.map((project, index) => (
-							<a
-								key={index}
-								href={project.link}
-								target="_blank"
-								rel="noopener noreferrer"
-								className={style.project}
-								aria-label={`访问项目：${project.name}`}
-							>
+							<li key={index} className={style.project}>
 								<div className={style.logo}>
 									<Image src={getIconPath(project.icon)} alt={project.name} width={48} height={48} className={style.icon} />
 								</div>
-								<div className={style.details}>
+								<a href={project.link} target="_blank" rel="noopener noreferrer" className={style.details} aria-label={`访问项目：${project.name}`}>
 									<h3>{project.name}</h3>
 									<p>{project.description}</p>
-								</div>
+								</a>
 								<div className={style.empty}></div>
-							</a>
+							</li>
 						))}
 					</ul>
 				</section>
