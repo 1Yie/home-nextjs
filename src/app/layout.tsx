@@ -45,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<title>ichiyo (@1Yie)</title>
 			</head>
 			<body>
+				<ImageZoom />
 				<NextTopLoader
 					color="var(--progress-bar-color)"
 					initialPosition={0.08}
@@ -61,7 +62,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				{children}
 				<Footer />
 			</body>
-			<ImageZoom />
 		</html>
 	);
 }
