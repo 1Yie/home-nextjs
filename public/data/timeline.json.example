@@ -1,0 +1,81 @@
+[
+  {
+    "year": "2025",
+    "items": [
+      {
+        "date": "6月6日",
+        "title": "更新了时间线",
+        "images": [
+          "https://file.ichiyo.in/sakura/images/changelog/screenshot-1749195007515.png"
+        ]
+      },
+      {
+        "date": "5月28日",
+        "title": "更新了图片墙",
+        "images": [
+          "https://file.ichiyo.in/sakura/images/changelog/screenshot-1749195734501.png"
+        ]
+      },
+      {
+        "date": "5月24日",
+        "title": "更新了 Scroll Velocity 效果",
+        "images": [
+          "https://file.ichiyo.in/sakura/images/changelog/screenshot-1749196846967.png"
+        ]
+      },
+      {
+        "date": "5月22日",
+        "title": "更新了一些文字动画效果",
+        "images": [
+          "https://file.ichiyo.in/sakura/images/changelog/screenshot-1749194926507.png",
+          "https://file.ichiyo.in/sakura/images/changelog/screenshot-1749197512527.png"
+        ]
+      },
+      {
+        "date": "3月17日",
+        "title": "更新博客页面",
+        "images": [
+          "https://file.ichiyo.in/sakura/images/changelog/blog-page.png",
+          "https://file.ichiyo.in/sakura/images/changelog/blog-comment.png",
+          "https://file.ichiyo.in/sakura/images/changelog/blog-page-detail.png"
+        ]
+      },
+      {
+        "date": "3月12日",
+        "title": "站点使用 Next.js 重写",
+        "images": []
+      },
+      {
+        "date": "2月19日",
+        "title": "React 重写站点",
+        "images": [
+          "https://file.ichiyo.in/sakura/images/changelog/react-home.png"
+        ]
+      },
+      {
+        "date": "2月17日",
+        "title": "站点使用 imsyy homepage",
+        "images": [
+          "https://file.ichiyo.in/sakura/images/changelog/imsyy-home-ichiyo.png"
+        ]
+      },
+      {
+        "date": "2月16日",
+        "title": "站点从 ingstar.moe 转为 ichiyo.in",
+        "images": []
+      }
+    ]
+  },
+  {
+    "year": "2024",
+    "items": [
+      {
+        "date": "12月29日",
+        "title": "ingStar - 星之进行时",
+        "images": [
+          "https://file.ichiyo.in/sakura/images/changelog/screenshot-1749199842467.png"
+        ]
+      }
+    ]
+  }
+]

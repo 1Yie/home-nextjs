@@ -52,6 +52,7 @@ src/app/blog/post/**/*.md
 /public/data/friends.json
 /public/data/projects.json
 /public/data/slides.json
+/public/data/timeline.json
 
 
 commit.md
