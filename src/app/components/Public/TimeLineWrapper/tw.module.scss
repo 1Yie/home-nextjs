@@ -1,0 +1,49 @@
+.timelineCard {
+	border-radius: 0px;
+	margin-bottom: 20px;
+}
+
+.timelineCard:last-child {
+	margin-bottom: 0;
+}
+
+.timelineCard h1 {
+	color: var(--text-color);
+	font-size: 24px;
+	margin-bottom: 15px;
+}
+
+.timelineCard h2 {
+	color: var(--text-sub-color);
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+.timelineCard p {
+	color: var(--text-sub-color);
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+.imagesMasonry {
+	column-count: 2;
+	column-gap: 12px;
+}
+
+.imageContainer {
+	break-inside: avoid;
+	z-index: 1;
+	background: transparent;
+	margin-bottom: 12px;
+	border-radius: 0px;
+	overflow: hidden;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.imageContainer:hover {
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+	transform: scale(1.03);
+}

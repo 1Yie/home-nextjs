@@ -1,0 +1,166 @@
+.container {
+	width: 100%;
+
+	@media (min-width: 768px) {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
+}
+
+.heading {
+	font-size: 1.125rem;
+	margin-bottom: 1rem;
+	color: var(--text-color);
+	max-width: 56rem;
+	line-height: 1.3;
+
+	@media (min-width: 768px) {
+		font-size: 2.25rem;
+		line-height: 1.2;
+	}
+}
+
+.description {
+	color: var(--text-sub-color);
+	font-size: 0.875rem;
+	max-width: 24rem;
+	line-height: 1.5;
+
+	@media (min-width: 768px) {
+		font-size: 1rem;
+	}
+}
+
+.timelineContainer {
+	position: relative;
+	max-width: 80rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 5rem;
+}
+
+.timelineEntry {
+	display: flex;
+	justify-content: flex-start;
+	padding: 2.5rem 0;
+}
+
+.leftSection {
+	position: sticky;
+	display: flex;
+	z-index: 40;
+	top: 10rem;
+	align-self: flex-start;
+	max-width: 24rem;
+
+	flex-direction: row;
+	align-items: center;
+	height: fit-content;
+
+	@media (min-width: 768px) {
+		width: 100%;
+		max-width: 28rem;
+	}
+
+	@media (min-width: 1024px) {
+		max-width: 32rem;
+	}
+}
+
+.dotContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 9999px;
+	background-color: var(--bg-color);
+	position: relative;
+	flex-shrink: 0;
+}
+
+.dot {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 1rem;
+	width: 1rem;
+	border-radius: 9999px;
+	background-color: var(--text-sub-color);
+	border: 1px solid var(--bg-sub-panel-color2);
+}
+
+.titleLarge {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 2.5rem;
+	line-height: 1;
+	margin-left: 0.75rem;
+
+	h3 {
+		font-size: 2rem;
+		font-weight: bold;
+		color: var(--text-sub-color);
+		margin: 0;
+		padding: 0;
+		line-height: 1;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+
+		@media screen and (max-width: 768px) {
+			font-size: 1.5rem;
+		}
+	}
+}
+
+.rightSection {
+	position: relative;
+	padding: 0 1rem 0 1.25rem;
+	width: 100%;
+
+	@media screen and (max-width: 768px) {
+		padding-left: 1rem;
+	}
+}
+
+.titleSmall {
+	display: block;
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	text-align: left;
+	font-weight: bold;
+	color: var(--text-sub-color);
+	line-height: 1.3;
+
+	@media screen and (max-width: 768px) {
+		display: none;
+	}
+}
+
+.lineBackground {
+	position: absolute;
+	left: 1.25rem;
+	top: 0;
+	overflow: hidden;
+	width: 2px;
+	background-image: linear-gradient(to bottom, transparent 0%, var(--bg-sub-panel-color2) 10%, var(--bg-sub-panel-color2) 90%, transparent 99%);
+	mask-image: linear-gradient(to bottom, transparent 0%, var(--bg-color-reverse) 10%, var(--bg-color-reverse) 90%, transparent 100%);
+
+	@media screen and (max-width: 768px) {
+		left: 1.25rem;
+	}
+}
+
+.lineProgress {
+	position: absolute;
+	inset: 0;
+	top: 0;
+	width: 2px;
+	background-image: linear-gradient(to top, #8b5cf6 0%, #3b82f6 10%, transparent 100%);
+	border-radius: 9999px;
+	overflow: hidden;
+}
