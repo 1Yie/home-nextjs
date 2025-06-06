@@ -2,6 +2,7 @@ import './global.scss';
 import React from 'react';
 import NextTopLoader from 'nextjs-toploader';
 import { Ubuntu_Sans, Source_Code_Pro, Raleway } from 'next/font/google';
+import ImageZoom from '@/components/Public/ImgZoom';
 
 import Header from '@/app/components/Public/Header';
 import Footer from '@/app/components/Public/Footer';
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				{children}
 				<Footer />
 			</body>
+			<ImageZoom />
 		</html>
 	);
 }
