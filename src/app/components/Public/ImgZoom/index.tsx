@@ -1,32 +1,48 @@
 'use client';
 
 import { useEffect } from 'react';
-import mediumZoom from 'medium-zoom';
+import mediumZoom, { Zoom } from 'medium-zoom';
 
 export default function ImageZoom() {
 	useEffect(() => {
-		const imgs = document.querySelectorAll('img[data-zoom="true"]');
-		const readyImages: HTMLImageElement[] = [];
+		const zoom = mediumZoom({ margin: 12 }) as Zoom;
 
-		imgs.forEach((imgElement) => {
-			const img = imgElement as HTMLImageElement;
+		const attachZoomToImages = () => {
+			const imgs = Array.from(document.querySelectorAll('img[data-zoom="true"]')) as HTMLImageElement[];
 
-			img.setAttribute('fetchpriority', 'low');
-			img.setAttribute('loading', 'lazy');
-			img.setAttribute('decoding', 'async');
+			imgs.forEach((img) => {
+				if (zoom.getImages().includes(img)) return;
 
-			if (img.complete && img.naturalWidth !== 0) {
-				readyImages.push(img);
-			} else {
-				img.addEventListener('load', () => {
-					mediumZoom(img, { margin: 12 });
-				});
-			}
+				img.setAttribute('fetchpriority', 'low');
+				img.setAttribute('loading', 'lazy');
+				img.setAttribute('decoding', 'async');
+
+				if (img.complete && img.naturalWidth !== 0) {
+					zoom.attach(img);
+				} else {
+					const onLoad = () => {
+						zoom.attach(img);
+						img.removeEventListener('load', onLoad);
+					};
+					img.addEventListener('load', onLoad);
+				}
+			});
+		};
+
+		attachZoomToImages();
+
+		const observer = new MutationObserver(() => {
+			attachZoomToImages();
+		});
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true,
 		});
 
-		if (readyImages.length > 0) {
-			mediumZoom(readyImages, { margin: 12 });
-		}
+		return () => {
+			zoom.detach();
+			observer.disconnect();
+		};
 	}, []);
 
 	return null;
