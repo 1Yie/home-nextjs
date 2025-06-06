@@ -91,11 +91,39 @@
 	}
 }
 
+.timelinePanel {
+	.timeTitle {
+		padding: 25px 0;
+		h1 {
+			font-size: 40px;
+			margin-bottom: 8px;
+			color: var(--text-color);
+		}
+
+		p {
+			font-size: 18px;
+			color: var(--text-sub-color);
+		}
+
+		@media screen and (max-width: 768px) {
+			padding: 10px 25px;
+		}
+	}
+	#timeline {
+		padding: 40px 80px;
+		border-bottom: 1px solid var(--border-color);
+
+		@media screen and (max-width: 768px) {
+			padding: 20px 0px;
+		}
+	}
+}
+
 .space {
 	border-bottom: 1px solid var(--border-color);
 
 	#spaceContent {
-		height: 60px;
+		height: 50vh;
 
 		background-size: 100%;
 		background-image: repeating-linear-gradient(135deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 6px);

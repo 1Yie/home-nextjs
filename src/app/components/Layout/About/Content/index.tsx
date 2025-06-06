@@ -1,13 +1,89 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, JSX } from 'react';
+
 import style from './content.module.scss';
 import Gravatar from '@/lib/gravatar';
 import { Carousel } from '@/components/Public/Carousel';
 import { ScrollVelocity } from '@/components/Public/ScrollVelocity';
 import SplitText from '@/components/Public/SplitText';
+import { Timeline } from '@/app/components/Public/Timeline';
+import TimeLineWrapper from '@/app/components/Public/TimeLineWrapper';
 
 const email = 'me@ichiyo.in';
+
+const TimeLine2025: () => JSX.Element = () => {
+	return (
+		<>
+			<TimeLineWrapper imageSrcList={['https://file.ichiyo.in/sakura/images/changelog/screenshot-1749195007515.png']}>
+				<h1>6 月</h1>
+				<h2>6 日</h2>
+				<p>更新了时间线</p>
+			</TimeLineWrapper>
+
+			<TimeLineWrapper imageSrcList={['https://file.ichiyo.in/sakura/images/changelog/screenshot-1749195734501.png']}>
+				<h1>5 月</h1>
+				<h2>28 日</h2>
+				<p>更新了图片墙</p>
+			</TimeLineWrapper>
+
+			<TimeLineWrapper imageSrcList={['https://file.ichiyo.in/sakura/images/changelog/screenshot-1749196846967.png']}>
+				<h2>24 日</h2>
+				<p>更新了 Scroll Velocity 效果</p>
+			</TimeLineWrapper>
+
+			<TimeLineWrapper
+				imageSrcList={[
+					'https://file.ichiyo.in/sakura/images/changelog/screenshot-1749194926507.png',
+					'https://file.ichiyo.in/sakura/images/changelog/screenshot-1749197512527.png',
+				]}
+			>
+				<h2>22 日</h2>
+				<p>更新了一些文字动画效果</p>
+			</TimeLineWrapper>
+
+			<TimeLineWrapper imageSrcList={['https://file.ichiyo.in/sakura/images/changelog/blog-page.png']}>
+				<h1>3 月</h1>
+				<h2>17 日</h2>
+				<p>更新博客页面</p>
+			</TimeLineWrapper>
+
+			<TimeLineWrapper>
+				<h2>12 日</h2>
+				<p>站点使用 Next.js 重写</p>
+			</TimeLineWrapper>
+
+			<TimeLineWrapper imageSrcList={['https://file.ichiyo.in/sakura/images/changelog/react-home.png']}>
+				<h1>2 月</h1>
+				<h2>19 日</h2>
+				<p>站点从 ingstar.moe 转为 ichiyo.in</p>
+			</TimeLineWrapper>
+		</>
+	);
+};
+
+const TimeLine2024: () => JSX.Element = () => {
+	return (
+		<>
+			<TimeLineWrapper imageSrcList={['https://file.ichiyo.in/sakura/images/changelog/screenshot-1749199842467.png']}>
+				<h1>12 月</h1>
+				<h2>29 日</h2>
+				<p>ingStar - 星之进行时</p>
+			</TimeLineWrapper>
+		</>
+	);
+};
+
+const timelineData = [
+	{
+		title: '2025',
+		content: <TimeLine2025 />,
+	},
+	{
+		title: '2024',
+		content: <TimeLine2024 />,
+	},
+];
 
 export default function Content() {
 	const [slides, setSlides] = useState<{ title: string; src: string }[]>([]);
@@ -78,6 +154,16 @@ export default function Content() {
 						</div>
 					</section>
 				</div>
+			</div>
+
+			<div className={style.timelinePanel}>
+				<section id={style.timeline}>
+					<div className={style.timeTitle}>
+						<h1>时间线</h1>
+						<p>岁月长河的刻度，历史卷轴的笔触。</p>
+					</div>
+					<Timeline data={timelineData} />
+				</section>
 			</div>
 
 			<div className={style.space}>
