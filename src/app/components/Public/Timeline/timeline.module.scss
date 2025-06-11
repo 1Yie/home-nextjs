@@ -160,7 +160,7 @@
 	inset: 0;
 	top: 0;
 	width: 2px;
-	background-image: linear-gradient(to top, #8b5cf6 0%, #3b82f6 10%, transparent 100%);
+	background-image: linear-gradient(to top, var(--bg-sub-space-color) 0%, var(--bg-color-reverse) 10%, transparent 100%);
 	border-radius: 9999px;
 	overflow: hidden;
 }

@@ -61,6 +61,8 @@ const renderTimelineFromJson = (data: TimelineYear[]): TimelineDataItem[] => {
 export default function Content() {
 	const [slides, setSlides] = useState<{ title: string; src: string }[]>([]);
 	const [timelineData, setTimelineData] = useState<{ title: string; content: JSX.Element }[]>([]);
+	const [timelineLoading, setTimelineLoading] = useState(true);
+	const [timelineError, setTimelineError] = useState(false);
 
 	useEffect(() => {
 		async function fetchSlides() {
@@ -84,8 +86,12 @@ export default function Content() {
 				const data = await res.json();
 				const rendered = renderTimelineFromJson(data);
 				setTimelineData(rendered);
+				setTimelineError(false);
 			} catch (error) {
 				console.error('读取 timeline 失败:', error);
+				setTimelineError(true);
+			} finally {
+				setTimelineLoading(false);
 			}
 		}
 		fetchTimeline();
@@ -153,7 +159,17 @@ export default function Content() {
 						<h1>时间线</h1>
 						<p>岁月长河的刻度，历史卷轴的笔触。</p>
 					</div>
-					<Timeline data={timelineData} />
+					{timelineLoading ? (
+						<div className={style.loading}>
+							<p>欲系数据少驻，加载去</p>
+						</div>
+					) : timelineError ? (
+						<div className={style.error}>
+							<p>数据寻它千百度，请稍后重试</p>
+						</div>
+					) : (
+						<Timeline data={timelineData} />
+					)}
 				</section>
 			</div>
 

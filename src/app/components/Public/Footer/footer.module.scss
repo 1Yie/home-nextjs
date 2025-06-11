@@ -2,6 +2,10 @@
 	a {
 		text-decoration: none;
 		padding: 8px;
+
+		@media  screen and (max-width: 768px) {
+			padding: 8px 4px;
+		}
 	}
 
 	p {
@@ -38,6 +42,10 @@
 	.sociallinks {
 		margin-left: auto;
 		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
 		z-index: 1;
 
 		span {
@@ -45,6 +53,7 @@
 			color: var(--footer-text-color);
 			display: flex;
 			align-items: center;
+			justify-content: center;
 			transition: color 0.3s ease-in-out;
 			&:hover {
 				color: var(--text-color) !important;

@@ -92,37 +92,51 @@
 }
 
 .timelinePanel {
-	.timeTitle {
-		padding: 25px 0;
-		h1 {
-			font-size: 40px;
-			margin-bottom: 8px;
-			color: var(--text-color);
-
-			@media screen and (max-width: 768px) {
-				font-size: 26px;
-			}
-		}
-
-		p {
-			font-size: 18px;
-			color: var(--text-sub-color);
-
-			@media screen and (max-width: 768px) {
-				font-size: 16px;
-			}
-		}
-
-		@media screen and (max-width: 768px) {
-			padding: 10px 25px;
-		}
-	}
 	#timeline {
 		padding: 40px 80px;
 		border-bottom: 1px solid var(--border-color);
 
 		@media screen and (max-width: 768px) {
 			padding: 20px 0px;
+		}
+		.loading,
+		.error {
+			p {
+				padding: 40px 0;
+				text-align: center;
+				font-size: 18px;
+				color: var(--text-sub-color);
+
+				@media screen and (max-width: 768px) {
+					font-size: 16px;
+				}
+			}
+		}
+
+		.timeTitle {
+			padding: 25px 0;
+			h1 {
+				font-size: 40px;
+				margin-bottom: 8px;
+				color: var(--text-color);
+
+				@media screen and (max-width: 768px) {
+					font-size: 26px;
+				}
+			}
+
+			p {
+				font-size: 18px;
+				color: var(--text-sub-color);
+
+				@media screen and (max-width: 768px) {
+					font-size: 16px;
+				}
+			}
+
+			@media screen and (max-width: 768px) {
+				padding: 10px 25px;
+			}
 		}
 	}
 }
