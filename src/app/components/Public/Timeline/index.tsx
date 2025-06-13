@@ -49,7 +49,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 						</div>
 
 						<div className={styles.rightSection}>
-							{/* <h3 className={styles.titleSmall}>{item.title}</h3> */}
 							{item.content}
 						</div>
 					</div>

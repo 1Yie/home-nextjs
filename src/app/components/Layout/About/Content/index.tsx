@@ -32,7 +32,7 @@ interface TimelineDataItem {
 
 const renderTimelineFromJson = (data: TimelineYear[]): TimelineDataItem[] => {
 	return data.map((yearItem) => {
-		let lastMonth = '';
+		let lastFullDate = ''; // 记录上一次渲染的“完整日期”，如 '6月13日'
 
 		return {
 			title: yearItem.year,
@@ -42,15 +42,21 @@ const renderTimelineFromJson = (data: TimelineYear[]): TimelineDataItem[] => {
 						const match = item.date.match(/^(\d+)月(\d+)日$/);
 						const month = match?.[1] || '';
 						const day = match?.[2] || '';
-						const currentMonth = `${month} 月`;
+						const fullDate = `${month}月${day}日`;
 
-						const showMonth = currentMonth !== lastMonth;
-						lastMonth = currentMonth;
+						const showDate = fullDate !== lastFullDate;
+						if (showDate) {
+							lastFullDate = fullDate;
+						}
 
 						return (
 							<TimeLineWrapper key={index} imageSrcList={item.images}>
-								{showMonth && <h1>{currentMonth}</h1>}
-								<h2>{`${day} 日`}</h2>
+								{showDate && (
+									<>
+										<h1>{`${month} 月`}</h1>
+										<h2>{`${day} 日`}</h2>
+									</>
+								)}
 								<p>{item.title}</p>
 							</TimeLineWrapper>
 						);
@@ -60,6 +66,8 @@ const renderTimelineFromJson = (data: TimelineYear[]): TimelineDataItem[] => {
 		};
 	});
 };
+
+
 
 export default function Content() {
 	const [slides, setSlides] = useState<{ title: string; src: string }[]>([]);
