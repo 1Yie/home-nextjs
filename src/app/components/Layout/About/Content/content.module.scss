@@ -85,16 +85,14 @@
 }
 
 .intro {
-	#carousel {
-		padding-bottom: 20px;
-		background-color: var(--bg-sub-space-color);
-	}
+	border-top: 1px solid var(--border-color);
+	background-color: var(--bg-sub-space-color);
 }
 
 .timelinePanel {
+	border-bottom: 1px solid var(--border-color);
 	#timeline {
 		padding: 40px 80px;
-		border-bottom: 1px solid var(--border-color);
 
 		@media screen and (max-width: 768px) {
 			padding: 20px 0px;
@@ -144,11 +142,55 @@
 .space {
 	border-bottom: 1px solid var(--border-color);
 
-	#spaceContent {
-		height: 50vh;
+	height: 100%;
 
-		background-size: 100%;
-		background-image: repeating-linear-gradient(135deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 6px);
+	background-size: 100%;
+	background-image: repeating-linear-gradient(135deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 6px);
+
+	.beamsTextPanel {
+		display: flex;
+		flex-direction: column;
+		height: inherit;
+
+		.beamsText {
+			padding: 80px 280px;
+			height: inherit;
+			// 禁止鼠标选中
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+
+			h1 {
+				font-size: 42px;
+				margin-bottom: 15px;
+				background: -webkit-linear-gradient(white, #ccc);
+				background-clip: text;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			p {
+				font-size: 28px;
+				line-height: 1.5;
+				background: -webkit-linear-gradient(white, #bbb);
+				background-clip: text;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			@media screen and (max-width: 768px) {
+				padding: 60px 50px;
+
+				h1 {
+					font-size: 32px;
+				}
+
+				p {
+					font-size: 23px;
+				}
+			}
+		}
 	}
 }
 

@@ -4,10 +4,13 @@ import { useEffect, useState, JSX } from 'react';
 import style from './content.module.scss';
 import Gravatar from '@/lib/gravatar';
 import { Carousel } from '@/components/Public/Carousel';
-import { ScrollVelocity } from '@/components/Public/ScrollVelocity';
+// import { ScrollVelocity } from '@/components/Public/ScrollVelocity';
 import SplitText from '@/components/Public/SplitText';
 import { Timeline } from '@/app/components/Public/Timeline';
 import TimeLineWrapper from '@/app/components/Public/TimeLineWrapper';
+import FadeContent from '@/app/components/Public/FadeContent';
+
+import Beams from '@/app/components/Public/Beams';
 
 const email = 'me@ichiyo.in';
 
@@ -135,21 +138,19 @@ export default function Content() {
 					</div>
 				</section>
 
-				<div className={style.scrollBanner}>
+				{/* <div className={style.scrollBanner}>
 					<ScrollVelocity
 						texts={['Photos Moment', 'Record Life']}
 						velocity={40}
 						parallaxClassName={style.bannerBg}
 						scrollerClassName={style.bannerText}
 					/>
-				</div>
+				</div> */}
 
 				<div className={style.intro}>
-					<section id={style.carousel}>
-						<div className={style.carouselInner}>
-							<Carousel slides={slides} />
-						</div>
-					</section>
+					<div className={style.carouselInner}>
+						<Carousel slides={slides} />
+					</div>
 				</div>
 			</div>
 
@@ -174,7 +175,28 @@ export default function Content() {
 			</div>
 
 			<div className={style.space}>
-				<section id={style.spaceContent}></section>
+				<Beams beamWidth={3} beamHeight={30} beamNumber={15} lightColor="#ffffff" speed={2} noiseIntensity={1.75} scale={0.2} rotation={130}>
+					<div className={style.beamsTextPanel}>
+						<FadeContent blur={true} duration={500} easing="ease-out" initialOpacity={0}>
+							<div className={style.beamsText}>
+								<h1>结束了？</h1>
+								<p>正在寻找新的开始，</p>
+								<p>也是在和旧日时光告别。</p>
+								<br />
+								<p>那些未说完的话、没走完的路，</p>
+								<p>悄然沉入回忆的深海。</p>
+								<br />
+								<p>夜色终将褪去，</p>
+								<p>而晨光，总会如期而至。</p>
+								<p>不要害怕孤独，</p>
+								<p>那是灵魂重启的序曲。</p>
+								<br />
+								<p>路还很长，</p>
+								<p>风也终会为你指引方向。</p>
+							</div>
+						</FadeContent>
+					</div>
+				</Beams>
 			</div>
 		</>
 	);
