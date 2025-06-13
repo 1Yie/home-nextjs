@@ -13,6 +13,13 @@
 		padding: 0;
 	}
 
+	.noTag {
+		text-align: center;
+		padding: 20px 0;
+		color: var(--text-sub-color);
+		font-size: 18px;
+	}
+
 	.tag {
 		display: flex;
 		flex-direction: column;

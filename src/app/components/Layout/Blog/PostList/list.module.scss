@@ -31,6 +31,13 @@
 		padding: 0;
 	}
 
+	.noPost {
+		text-align: center;
+		padding: 40px 0;
+		color: var(--text-sub-color);
+		font-size: 18px;
+	}
+
 	.postLink {
 		text-decoration: none;
 		color: inherit;

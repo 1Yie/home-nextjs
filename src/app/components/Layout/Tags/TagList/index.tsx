@@ -34,10 +34,13 @@ export default function TagsPage({ sortedTags }: { sortedTags: [string, { count:
 		<>
 			<div className={style.tagsContainer}>
 				<section id={style.tags}>
+					{sortedTags.length === 0 && (
+						<p className={style.noTag}>暂无 Tag</p>
+					)}
 					<div className={style.tagList}>
 						{sortedTags.map(([tag, { count }]) => (
 							<div key={tag} className={style.tag}>
-								<Link key={tag} href={`/tags/${tag}`} className={style.tagTitle}>
+								<Link href={`/tags/${tag}`} className={style.tagTitle}>
 									#{tag} ({count})
 								</Link>
 							</div>
@@ -51,3 +54,4 @@ export default function TagsPage({ sortedTags }: { sortedTags: [string, { count:
 		</>
 	);
 }
+

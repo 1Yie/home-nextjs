@@ -45,19 +45,23 @@ export default function BlogPage({ posts }: { posts: PostMetadata[] }) {
 						</Link>
 					</div>
 					<div className={style.postsList}>
-						{sortedPosts.map((post) => (
-							<Link key={post.slug} href={`/blog/${post.slug}`} className={style.postLink}>
-								<article className={style.postCard}>
-									<div className={style.postPanel}>
-										<h2>{post.title}</h2>
-										<div className={style.postMeta}>
-											<time className={style.postDate}>{formatDate(post.date)}</time>
-											<Tag tags={post.tags || []} />
+						{sortedPosts.length === 0 ? (
+							<p className={style.noPost}>暂无文章</p>
+						) : (
+							sortedPosts.map((post) => (
+								<Link key={post.slug} href={`/blog/${post.slug}`} className={style.postLink}>
+									<article className={style.postCard}>
+										<div className={style.postPanel}>
+											<h2>{post.title}</h2>
+											<div className={style.postMeta}>
+												<time className={style.postDate}>{formatDate(post.date)}</time>
+												<Tag tags={post.tags || []} />
+											</div>
 										</div>
-									</div>
-								</article>
-							</Link>
-						))}
+									</article>
+								</Link>
+							))
+						)}
 					</div>
 				</section>
 			</div>
