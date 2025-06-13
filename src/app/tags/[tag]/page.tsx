@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { PostMetadata } from '@/app/blog/post';
 import PostList from '@/components/Layout/Blog/PostList';
 import style from './tag.module.scss';
+import NewSplitText from '@/components/Public/NewSplitText';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,7 +33,19 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
 		<>
 			<div className={style.tagContainer}>
 				<section id={style.tag}>
-					<h1>#{decodedTag}</h1>
+					<NewSplitText
+						as="h1"
+						text={`#${decodedTag}`}
+						delay={100}
+						duration={0.6}
+						ease="power3.out"
+						splitType="words"
+						from={{ opacity: 0, y: 40 }}
+						to={{ opacity: 1, y: 0 }}
+						threshold={0.1}
+						rootMargin="-100px"
+						textAlign="center"
+					/>
 				</section>
 			</div>
 			<PostList posts={filteredPosts} />
