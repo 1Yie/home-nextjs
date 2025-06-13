@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Comments from '@/app/components/Public/Comment';
 import Tag from '@/components/Public/Tag';
 import TopAnchor from '@/app/components/Public/TopAnchor';
+import NewSplitText from '@/components/Public/NewSplitText';
 
 import type { Metadata, ResolvingMetadata } from 'next';
 
@@ -69,7 +70,19 @@ export default async function PostPage({ params }: Props) {
 							/<span className={style.breadcrumbTitle}>&nbsp;{post.title}&nbsp;</span>
 						</nav>
 						<div className={style.content}>
-							<h1>{post.title}</h1>
+							<NewSplitText
+								as="h1"
+								text={post.title}
+								delay={100}
+								duration={0.6}
+								ease="power3.out"
+								splitType="words"
+								from={{ opacity: 0, y: 40 }}
+								to={{ opacity: 1, y: 0 }}
+								threshold={0.1}
+								rootMargin="-100px"
+							/>
+
 							<Tag tags={post.tags || []} />
 							<time className={style.date}>{formatDate(post.date)}</time>
 						</div>
