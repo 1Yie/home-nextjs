@@ -6,7 +6,6 @@ const BASE_URL = 'https://ichiyo.in';
 export async function GET() {
 	const feed = new RSS({
 		title: `ichiyo's Blog`,
-		description: '分享技术、生活、感悟...',
 		site_url: BASE_URL,
 		feed_url: BASE_URL + '/api/rss',
 	});
@@ -21,7 +20,9 @@ export async function GET() {
 
 		feed.item({
 			title: post.title,
-			url: BASE_URL + `/blog/${post.slug}`,
+			author: 'ichiyo',
+			url: `${BASE_URL}/blog/${post.slug}`,
+			guid: `${BASE_URL}/blog/${post.slug}`,
 			date: chinaTime,
 			description: plainTextContent.substring(0, 200) + '...',
 		});
