@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import style from './InfiniteMovingCards.module.scss';
 
@@ -36,11 +36,7 @@ export const InfiniteMovingCards = ({
 	const scrollerRef = React.useRef<HTMLUListElement>(null);
 	const [start, setStart] = useState(false);
 
-	useEffect(() => {
-		addAnimation();
-	}, []);
-
-	function addAnimation() {
+	const addAnimation = useCallback(() => {
 		if (containerRef.current && scrollerRef.current) {
 			const scrollerContent = Array.from(scrollerRef.current.children);
 
@@ -49,20 +45,20 @@ export const InfiniteMovingCards = ({
 				scrollerRef.current!.appendChild(duplicatedItem);
 			});
 
-			getDirection();
-			getSpeed();
+			// 设置方向
+			containerRef.current.style.setProperty('--animation-direction', direction === 'left' ? 'forwards' : 'reverse');
+
+			// 设置速度
+			const duration = speed === 'fast' ? '20s' : speed === 'normal' ? '40s' : '80s';
+			containerRef.current.style.setProperty('--animation-duration', duration);
+
 			setStart(true);
 		}
-	}
+	}, [direction, speed]);
 
-	const getDirection = () => {
-		containerRef.current?.style.setProperty('--animation-direction', direction === 'left' ? 'forwards' : 'reverse');
-	};
-
-	const getSpeed = () => {
-		const duration = speed === 'fast' ? '20s' : speed === 'normal' ? '40s' : '80s';
-		containerRef.current?.style.setProperty('--animation-duration', duration);
-	};
+	useEffect(() => {
+		addAnimation();
+	}, [addAnimation]);
 
 	return (
 		<div ref={containerRef} className={`${style.scroller} ${className ?? ''}`}>
