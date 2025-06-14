@@ -45,7 +45,7 @@ export default function Friends() {
 						<p className={style.friendDescription}>{friend.description}</p>
 						<div className={style.social}>
 							{friend.social.map((social, idx) => (
-								<SocialIcon key={idx} social={social} className={style.socialIcon}/>
+								<SocialIcon key={idx} social={social} className={style.socialIcon} />
 							))}
 						</div>
 					</div>

@@ -10,15 +10,7 @@ export interface Social {
 	icon?: string | { light: string; dark: string };
 }
 
-export default function SocialIcon({
-	social,
-	className = '',
-	iconClassName = '',
-}: {
-	social: Social;
-	className?: string;
-	iconClassName?: string;
-}) {
+export default function SocialIcon({ social, className = '', iconClassName = '' }: { social: Social; className?: string; iconClassName?: string }) {
 	const [, setHasError] = useState(false);
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -45,13 +37,7 @@ export default function SocialIcon({
 	};
 
 	return (
-		<a
-			href={social.link}
-			target="_blank"
-			rel="noopener noreferrer"
-			className={`${style.socialLink} ${className}`}
-			aria-label={`${social.name} link`}
-		>
+		<a href={social.link} target="_blank" rel="noopener noreferrer" className={`${style.socialLink} ${className}`} aria-label={`${social.name} link`}>
 			<div className={style.iconWrapper}>
 				<Image
 					src={getIconPath()}
