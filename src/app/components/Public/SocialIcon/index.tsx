@@ -10,7 +10,15 @@ export interface Social {
 	icon?: string | { light: string; dark: string };
 }
 
-export default function SocialIcon({ social }: { social: Social }) {
+export default function SocialIcon({
+	social,
+	className = '',
+	iconClassName = '',
+}: {
+	social: Social;
+	className?: string;
+	iconClassName?: string;
+}) {
 	const [, setHasError] = useState(false);
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -27,33 +35,36 @@ export default function SocialIcon({ social }: { social: Social }) {
 
 	const getIconPath = () => {
 		if (!social.icon) {
-			// 没传 icon，默认本地 /icons/ 目录 + 深色后缀
 			return `/icons/${social.name.toLowerCase()}${isDarkMode ? '-dark' : ''}.svg`;
 		}
-
 		if (typeof social.icon === 'string') {
-			// 字符串，如果是完整 url，直接用；否则拼本地路径
 			return isFullUrl(social.icon) ? social.icon : `/icons/${social.icon}`;
 		}
-
-		// icon 是对象，light 和 dark 可能是完整 url，也可能是相对路径
 		const iconPath = isDarkMode ? social.icon.dark : social.icon.light;
 		return isFullUrl(iconPath) ? iconPath : `/icons/${iconPath}`;
 	};
 
 	return (
-		<a href={social.link} target="_blank" rel="noopener noreferrer" className={style.socialLink} aria-label={`${social.name} link`}>
-			<Image
-				src={getIconPath()}
-				alt={`${social.name} icon`}
-				width={24}
-				height={24}
-				className={style.socialIcon}
-				onError={() => {
-					console.warn(`Icon failed to load: ${getIconPath()}`);
-					setHasError(true);
-				}}
-			/>
+		<a
+			href={social.link}
+			target="_blank"
+			rel="noopener noreferrer"
+			className={`${style.socialLink} ${className}`}
+			aria-label={`${social.name} link`}
+		>
+			<div className={style.iconWrapper}>
+				<Image
+					src={getIconPath()}
+					alt={`${social.name} icon`}
+					fill
+					className={`${style.socialIcon} ${iconClassName}`}
+					style={{ objectFit: 'contain' }}
+					onError={() => {
+						console.warn(`Icon failed to load: ${getIconPath()}`);
+						setHasError(true);
+					}}
+				/>
+			</div>
 		</a>
 	);
 }

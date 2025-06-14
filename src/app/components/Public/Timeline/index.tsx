@@ -48,9 +48,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 							</div>
 						</div>
 
-						<div className={styles.rightSection}>
-							{item.content}
-						</div>
+						<div className={styles.rightSection}>{item.content}</div>
 					</div>
 				))}
 				<div style={{ height: `${height}px` }} className={styles.lineBackground}>

@@ -84,6 +84,7 @@ export default function Projects() {
 							<h2>{githubTitle.title}</h2>
 						</div>
 					</div>
+
 					<div className={style.chartWrapper}>
 						<ContributionCalendar contributions={contributions} className={style.contributionCalendar} />
 					</div>

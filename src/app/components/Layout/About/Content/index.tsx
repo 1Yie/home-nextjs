@@ -32,7 +32,7 @@ interface TimelineDataItem {
 
 const renderTimelineFromJson = (data: TimelineYear[]): TimelineDataItem[] => {
 	return data.map((yearItem) => {
-		let lastFullDate = ''; // 记录上一次渲染的“完整日期”，如 '6月13日'
+		let lastFullDate = '';
 
 		return {
 			title: yearItem.year,
@@ -66,8 +66,6 @@ const renderTimelineFromJson = (data: TimelineYear[]): TimelineDataItem[] => {
 		};
 	});
 };
-
-
 
 export default function Content() {
 	const [slides, setSlides] = useState<{ title: string; src: string }[]>([]);

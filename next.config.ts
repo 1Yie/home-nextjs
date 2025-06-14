@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
 			},
 			{
 				protocol: 'https',
+				hostname: '*.githubusercontent.com',
+				port: '',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
 				hostname: 'ghchart.rshah.org',
 				port: '',
 				pathname: '/**',
