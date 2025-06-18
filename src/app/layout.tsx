@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<meta name="author" content="ichiyo" />
 				<meta name="keywords" content="ichiyo,ICHIYO,Homepage,Blog,React,JavaScript,TypeScript,Web Development,Web" />
 
-				<link rel="stylesheet" href="https://static.zeoseven.com/zsft/309/main/result.css" />
+				<link rel="stylesheet" href="https://fontsapi.zeoseven.com/309/main/result.css" />
 
 				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/github.css" media="(prefers-color-scheme: light)" />
 				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/github-dark.css" media="(prefers-color-scheme: dark)" />
