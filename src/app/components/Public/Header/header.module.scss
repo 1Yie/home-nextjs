@@ -1,4 +1,5 @@
 .header {
+	border-bottom: 1px solid var(--border-color);
 	.blurOverlay {
 		position: fixed;
 		inset: 0;
@@ -22,7 +23,7 @@
 	#headerPanel {
 		position: relative;
 		z-index: 100;
-		border-bottom: 1px solid var(--border-color);
+		// border-bottom: 1px solid var(--border-color);
 		a {
 			padding: 8px;
 		}

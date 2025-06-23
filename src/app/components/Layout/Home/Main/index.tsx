@@ -3,7 +3,6 @@ import { ContainerTextFlip } from '@/components/Public/ContainerTextFlip';
 import NewSplitText from '@/components/Public/NewSplitText';
 
 const titles = {
-	subtitle: '欢迎访问寒舍',
 	words: ['边缘', 'CV战士', 'AI依赖症', '程序猿', 'BUG制造者', '咖啡依赖症', '拖延症晚期', '前端小透明'],
 };
 
@@ -30,7 +29,6 @@ const Home = () => {
 							<ContainerTextFlip words={titles.words} interval={5000} animationDuration={900} />
 						</span>
 					</h1>
-					<p>{titles.subtitle}</p>
 				</div>
 			</section>
 		</div>

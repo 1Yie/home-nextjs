@@ -23,6 +23,7 @@ interface Project {
 
 const githubTitle = {
 	title: 'GitHub 贡献',
+	subtitle: '纸上得来终觉浅，绝知此事要躬行。',
 };
 
 const projectTitle = {
@@ -77,27 +78,29 @@ export default function Projects() {
 
 	return (
 		<>
+			<div className={style.content}>
+				<section id={style.contentPanel}>
+					<h2>{githubTitle.title}</h2>
+					<p>{githubTitle.subtitle}</p>
+				</section>
+			</div>
 			<div className={style.github}>
 				<section id={style.contributionSection}>
-					<div className={style.content}>
-						<div className={style.intro}>
-							<h2>{githubTitle.title}</h2>
-						</div>
-					</div>
-
 					<div className={style.chartWrapper}>
 						<ContributionCalendar contributions={contributions} className={style.contributionCalendar} />
 					</div>
 				</section>
 			</div>
 
+			<div className={style.intro}>
+				<section id={style.introPanel}>
+					<h2>{projectTitle.title}</h2>
+					<p>{projectTitle.subtitle}</p>
+				</section>
+			</div>
+
 			<div className={style.projects}>
 				<section id={style.container}>
-					<div className={style.intro}>
-						<h2>{projectTitle.title}</h2>
-						<p>{projectTitle.subtitle}</p>
-					</div>
-
 					<ul className={style.projectList}>
 						{projects.map((project, index) => (
 							<li key={index} className={style.project}>

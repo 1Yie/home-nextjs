@@ -15,9 +15,15 @@
 
 	.noTag {
 		text-align: center;
-		padding: 20px 0;
-		color: var(--text-sub-color);
-		font-size: 18px;
+		padding: 40px 0;
+		p {
+			color: var(--text-sub-color);
+			font-size: 18px;
+		}
+		p:nth-of-type(2) {
+			font-weight: normal;
+			font-size: 16px;
+		}
 	}
 
 	.tag {

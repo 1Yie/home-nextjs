@@ -34,7 +34,12 @@ export default function TagsPage({ sortedTags }: { sortedTags: [string, { count:
 		<>
 			<div className={style.tagsContainer}>
 				<section id={style.tags}>
-					{sortedTags.length === 0 && <p className={style.noTag}>暂无 Tag</p>}
+					{sortedTags.length === 0 && (
+						<div className={style.noTag}>
+							<p>¯\_(ツ)_/¯</p>
+							<p>暂无 Tag</p>
+						</div>
+					)}
 					<div className={style.tagList}>
 						{sortedTags.map(([tag, { count }]) => (
 							<div key={tag} className={style.tag}>

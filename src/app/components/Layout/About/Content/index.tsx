@@ -1,77 +1,77 @@
 'use client';
 
-import { useEffect, useState, JSX } from 'react';
+import { useEffect, useState } from 'react';
 import style from './content.module.scss';
 import Gravatar from '@/lib/gravatar';
 import { Carousel } from '@/components/Public/Carousel';
 // import { ScrollVelocity } from '@/components/Public/ScrollVelocity';
 import SplitText from '@/components/Public/SplitText';
-import { Timeline } from '@/app/components/Public/Timeline';
-import TimeLineWrapper from '@/app/components/Public/TimeLineWrapper';
-import FadeContent from '@/app/components/Public/FadeContent';
+// import { Timeline } from '@/app/components/Public/Timeline';
+// import TimeLineWrapper from '@/app/components/Public/TimeLineWrapper';
+// import FadeContent from '@/app/components/Public/FadeContent';
 
-import Beams from '@/app/components/Public/Beams';
+// import Beams from '@/app/components/Public/Beams';
 
 const email = 'me@ichiyo.in';
 
-interface TimelineItem {
-	date: string;
-	title: string;
-	images: string[];
-}
+// interface TimelineItem {
+// 	date: string;
+// 	title: string;
+// 	images: string[];
+// }
 
-interface TimelineYear {
-	year: string;
-	items: TimelineItem[];
-}
+// interface TimelineYear {
+// 	year: string;
+// 	items: TimelineItem[];
+// }
 
-interface TimelineDataItem {
-	title: string;
-	content: JSX.Element;
-}
+// interface TimelineDataItem {
+// 	title: string;
+// 	content: JSX.Element;
+// }
 
-const renderTimelineFromJson = (data: TimelineYear[]): TimelineDataItem[] => {
-	return data.map((yearItem) => {
-		let lastFullDate = '';
+// const renderTimelineFromJson = (data: TimelineYear[]): TimelineDataItem[] => {
+// 	return data.map((yearItem) => {
+// 		let lastFullDate = '';
 
-		return {
-			title: yearItem.year,
-			content: (
-				<>
-					{yearItem.items.map((item, index) => {
-						const match = item.date.match(/^(\d+)月(\d+)日$/);
-						const month = match?.[1] || '';
-						const day = match?.[2] || '';
-						const fullDate = `${month}月${day}日`;
+// 		return {
+// 			title: yearItem.year,
+// 			content: (
+// 				<>
+// 					{yearItem.items.map((item, index) => {
+// 						const match = item.date.match(/^(\d+)月(\d+)日$/);
+// 						const month = match?.[1] || '';
+// 						const day = match?.[2] || '';
+// 						const fullDate = `${month}月${day}日`;
 
-						const showDate = fullDate !== lastFullDate;
-						if (showDate) {
-							lastFullDate = fullDate;
-						}
+// 						const showDate = fullDate !== lastFullDate;
+// 						if (showDate) {
+// 							lastFullDate = fullDate;
+// 						}
 
-						return (
-							<TimeLineWrapper key={index} imageSrcList={item.images}>
-								{showDate && (
-									<>
-										<h1>{`${month} 月`}</h1>
-										<h2>{`${day} 日`}</h2>
-									</>
-								)}
-								<p>{item.title}</p>
-							</TimeLineWrapper>
-						);
-					})}
-				</>
-			),
-		};
-	});
-};
+// 						return (
+// 							<TimeLineWrapper key={index} imageSrcList={item.images}>
+// 								{showDate && (
+// 									<>
+// 										<h1>{`${month} 月`}</h1>
+// 										<h2>{`${day} 日`}</h2>
+// 									</>
+// 								)}
+// 								<p>{item.title}</p>
+// 							</TimeLineWrapper>
+// 						);
+// 					})}
+// 				</>
+// 			),
+// 		};
+// 	});
+// };
 
 export default function Content() {
 	const [slides, setSlides] = useState<{ title: string; src: string }[]>([]);
-	const [timelineData, setTimelineData] = useState<{ title: string; content: JSX.Element }[]>([]);
-	const [timelineLoading, setTimelineLoading] = useState(true);
-	const [timelineError, setTimelineError] = useState(false);
+	// const [timelineData, setTimelineData] = useState<{ title: string; content: JSX.Element }[]>([]);
+	// const [timelineLoading, setTimelineLoading] = useState(true);
+	// const [timelineError, setTimelineError] = useState(false);
 
 	useEffect(() => {
 		async function fetchSlides() {
@@ -87,24 +87,24 @@ export default function Content() {
 		fetchSlides();
 	}, []);
 
-	useEffect(() => {
-		async function fetchTimeline() {
-			try {
-				const res = await fetch('/data/timeline.json');
-				if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-				const data = await res.json();
-				const rendered = renderTimelineFromJson(data);
-				setTimelineData(rendered);
-				setTimelineError(false);
-			} catch (error) {
-				console.error('读取 timeline 失败:', error);
-				setTimelineError(true);
-			} finally {
-				setTimelineLoading(false);
-			}
-		}
-		fetchTimeline();
-	}, []);
+	// useEffect(() => {
+	// 	async function fetchTimeline() {
+	// 		try {
+	// 			const res = await fetch('/data/timeline.json');
+	// 			if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+	// 			const data = await res.json();
+	// 			const rendered = renderTimelineFromJson(data);
+	// 			setTimelineData(rendered);
+	// 			setTimelineError(false);
+	// 		} catch (error) {
+	// 			console.error('读取 timeline 失败:', error);
+	// 			setTimelineError(true);
+	// 		} finally {
+	// 			setTimelineLoading(false);
+	// 		}
+	// 	}
+	// 	fetchTimeline();
+	// }, []);
 
 	return (
 		<>
@@ -160,7 +160,7 @@ export default function Content() {
 				</div>
 			</div>
 
-			<div className={style.timelinePanel}>
+			{/* <div className={style.timelinePanel}>
 				<section id={style.timeline}>
 					<div className={style.timeTitle}>
 						<h1>时间线</h1>
@@ -178,9 +178,9 @@ export default function Content() {
 						<Timeline data={timelineData} />
 					)}
 				</section>
-			</div>
+			</div> */}
 
-			<div className={style.space}>
+			{/* <div className={style.space}>
 				<Beams beamWidth={3} beamHeight={30} beamNumber={15} lightColor="#ffffff" speed={2} noiseIntensity={1.75} scale={0.2} rotation={130}>
 					<div className={style.beamsTextPanel}>
 						<FadeContent blur={true} duration={500} easing="ease-out" initialOpacity={0}>
@@ -203,7 +203,7 @@ export default function Content() {
 						</FadeContent>
 					</div>
 				</Beams>
-			</div>
+			</div> */}
 		</>
 	);
 }

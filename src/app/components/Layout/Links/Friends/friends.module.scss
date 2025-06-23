@@ -1,13 +1,22 @@
 .pinnedFriendsTitle {
+	border-top: 1px solid var(--border-color);
 	border-bottom: 1px solid var(--border-color);
+
+	background-size: 100%;
+
+	background-image: repeating-linear-gradient(45deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 8px);
+
 	#pinnedTitle {
 		padding: 10px;
 		h1 {
 			font-size: 1.4rem;
 			font-weight: 200;
 			color: var(--text-sub-color);
-			text-align: center;
 			letter-spacing: 0.5em;
+			background-color: var(--bg-color);
+			display: table;
+			margin: 0 auto;
+			padding: 0 10px;
 		}
 	}
 
@@ -125,14 +134,22 @@
 
 .unpinnedFriendsTitle {
 	border-bottom: 1px solid var(--border-color);
+
+	background-size: 100%;
+
+	background-image: repeating-linear-gradient(45deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 8px);
+
 	#unpinnedTitle {
 		padding: 10px;
 		h1 {
 			font-size: 1.4rem;
 			font-weight: 200;
 			color: var(--text-sub-color);
-			text-align: center;
 			letter-spacing: 0.5em;
+			background-color: var(--bg-color);
+			display: table;
+			margin: 0 auto;
+			padding: 0 10px;
 		}
 	}
 

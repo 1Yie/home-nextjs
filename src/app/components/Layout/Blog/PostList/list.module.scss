@@ -1,17 +1,13 @@
-.blogContainer {
+.rssLink {
+	background-size: 100%;
+
+	background-image: repeating-linear-gradient(45deg, var(--bg-border-color) 0px, var(--bg-border-color) 1px, transparent 1px, transparent 8px);
 	border-bottom: 1px solid var(--border-color);
-	background-color: var(--bg-sub-space-color);
-
-	#post {
-		background-color: var(--bg-color);
-	}
-
-	.rssLink {
+	#rssLinkPanel {
 		display: flex;
-		padding: 20px;
+		padding: 8px 24px;
 		gap: 5px;
-		background-color: var(--bg-sub-panel-color);
-		border-bottom: 1px solid var(--border-color);
+
 		justify-content: space-between;
 
 		.rssIcon {
@@ -26,6 +22,15 @@
 			fill: var(--text-color);
 		}
 	}
+}
+
+.blogContainer {
+	border-bottom: 1px solid var(--border-color);
+	background-color: var(--bg-sub-space-color);
+
+	#post {
+		background-color: var(--bg-color);
+	}
 
 	.postsList {
 		padding: 0;
@@ -34,8 +39,14 @@
 	.noPost {
 		text-align: center;
 		padding: 40px 0;
-		color: var(--text-sub-color);
-		font-size: 18px;
+		p {
+			color: var(--text-sub-color);
+			font-size: 18px;
+		}
+		p:nth-of-type(2) {
+			font-weight: normal;
+			font-size: 16px;
+		}
 	}
 
 	.postLink {

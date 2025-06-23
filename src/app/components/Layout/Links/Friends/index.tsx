@@ -72,33 +72,40 @@ export default function Friends() {
 
 	return (
 		<>
-			<div className={style.pinnedFriendsTitle}>
-				<section id={style.pinnedTitle}>
-					<h1>
-						<FadeContent blur={true} duration={500}>
-							Respected
-						</FadeContent>
-					</h1>
-				</section>
-			</div>
+			{pinnedFriends.length > 1 && (
+				<div className={style.pinnedFriendsTitle}>
+					<section id={style.pinnedTitle}>
+						<h1>
+							<FadeContent blur={true} duration={500}>
+								Respected
+							</FadeContent>
+						</h1>
+					</section>
+				</div>
+			)}
+
 			<div className={style.pinnedFriends}>
-				<section id={style.pinFriends}>{pinnedFriends.length > 0 && <>{renderPinnedFriendList(pinnedFriends)}</>}</section>
+				{pinnedFriends.length > 0 && <section id={style.pinFriends}>{renderPinnedFriendList(pinnedFriends)}</section>}
 			</div>
 
-			<div className={style.unpinnedFriendsTitle}>
-				<section id={style.unpinnedTitle}>
-					<h1>
-						<FadeContent blur={true} duration={500}>
-							Precious
-						</FadeContent>
-					</h1>
-				</section>
-			</div>
+			{otherFriends.length > 1 && (
+				<div className={style.unpinnedFriendsTitle}>
+					<section id={style.unpinnedTitle}>
+						<h1>
+							<FadeContent blur={true} duration={500}>
+								Precious
+							</FadeContent>
+						</h1>
+					</section>
+				</div>
+			)}
 
 			{otherFriends.length > 0 && (
-				<div className={style.unPinnedFriends}>
-					<section id={style.unPinFriends}>{renderOtherFriendList(otherFriends)}</section>
-				</div>
+				<>
+					<div className={style.unPinnedFriends}>
+						<section id={style.unPinFriends}>{renderOtherFriendList(otherFriends)}</section>
+					</div>
+				</>
 			)}
 		</>
 	);
